@@ -1,0 +1,52 @@
+.container {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  background-color: #FFFFFF;
+
+  & > div {
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.left {
+  width: 60%;
+
+  & > .logo {
+    color: #8FBC8FFF;
+    text-align: center;
+    font-size: 6.5rem;
+  }
+
+  & > .description {
+    color: #8FBC8FFF;
+    text-align: center;
+    font-size: 2.5rem;
+  }
+}
+
+.right {
+  width: 40%;
+  gap: 30px;
+  background-color: #8FBC8FFF;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.button {
+  width: 150px;
+  padding: 8px 0;
+  margin: 0 auto;
+  border-radius: 15px;
+  background-color: #FFDB83;
+  color: #467047;
+  font-weight: 700;
+  transition: background-color 250ms ease-in-out;
+
+  &:hover {
+    background-color: #FFE990;
+  }
+}
