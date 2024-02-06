@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  width: 100dvw;
+  height: 100dvh;
+  background-color: #FFFFFF;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 30px;
+  width: 30%;
+  max-width: 550px;
+  height: inherit;
+  padding: 50px 0;
+  background-color: #8FBC8FFF;
+  color: #FFFFFF;
+
+  & > a {
+    color: #FFDB83;
+    font-size: 3rem;
+    font-weight: 700;
+  }
+
+  & > nav {
+    flex-grow: 1;
+  }
+}
+
+.right {
+  flex-grow: 1;
+}
+
+.logoutButton {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 8px;
+  background-color: transparent;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: left;
+  cursor: pointer;
+  transition: color 250ms ease-in-out;
+
+  & > svg {
+    font-size: 2.3rem;
+  }
+
+  &:hover{
+    color: #467047;
+  }
+}

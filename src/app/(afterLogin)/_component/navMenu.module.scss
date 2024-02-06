@@ -1,0 +1,27 @@
+.navPill {
+  & > a {
+    display: inline-flex;
+    align-items: center;
+    column-gap: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+    transition: color 250ms ease-in-out;
+
+    svg {
+      font-size: 1.5rem;
+    }
+
+    strong, span {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    &:hover {
+      color: #467047;
+    }
+  }
+
+  &:last-of-type > a {
+    margin-bottom: 0;
+  }
+}

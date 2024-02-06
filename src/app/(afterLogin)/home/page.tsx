@@ -1,3 +1,3 @@
 export default function Page() {
-  return;
+  return <main>홈 화면입니다.</main>;
 }
