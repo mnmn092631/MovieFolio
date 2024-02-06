@@ -37,7 +37,7 @@ export default function LoginModal() {
             className={styles.submitButton}
             disabled={!form.id || !form.password}
           >
-            Login
+            login
           </button>
         </form>
       </div>
