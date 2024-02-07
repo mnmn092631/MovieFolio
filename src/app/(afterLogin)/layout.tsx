@@ -17,18 +17,20 @@ export default function AfterLoginLayout({ children }: Props) {
   return (
     <div className={styles.container}>
       <header className={styles.left}>
-        <Link href="/home">MovieFolio</Link>
-        <nav>
-          <ul>
-            <NavMenu />
-          </ul>
-        </nav>
-        {me?.username && (
-          <button className={styles.logoutButton}>
-            <FaUserCircle />
-            <span>{me.username}</span>
-          </button>
-        )}
+        <div>
+          <Link href="/home">MovieFolio</Link>
+          <nav>
+            <ul>
+              <NavMenu />
+            </ul>
+          </nav>
+          {me?.username && (
+            <button className={styles.logoutButton}>
+              <FaUserCircle />
+              <span>{me.username}</span>
+            </button>
+          )}
+        </div>
       </header>
       <main className={styles.right}>{children}</main>
     </div>
