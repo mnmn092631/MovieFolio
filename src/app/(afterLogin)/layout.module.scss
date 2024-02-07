@@ -10,6 +10,7 @@
   & > div {
     position: fixed;
     width: inherit;
+    max-width: 550px;
     height: 100dvh;
     display: flex;
     flex-direction: column;
