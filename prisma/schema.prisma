@@ -1,0 +1,135 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id            String   @id @default(cuid())
+  sessionToken  String   @unique
+  userId        String
+  expires       DateTime
+
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                String    @id @default(cuid())
+  name              String?
+  email             String?   @unique
+  userId            String?   @unique
+  password          String?
+  emailVerified     DateTime?
+  image             String?
+
+  accounts          Account[]
+  sessions          Session[]
+
+  writtenPosts      Post[]
+  comments          Comment[]
+  detailedReviews   DetailedReview[]
+  briefReviews      BriefReview[]
+}
+
+model VerificationToken {
+  identifier  String
+  token       String   @unique
+  expires     DateTime
+
+  @@unique([identifier, token])
+}
+
+model Post {
+  id          Int         @id @default(autoincrement())
+  title       String
+  content     String
+  createdAt   DateTime    @default(now())
+
+  author      User        @relation(fields: [authorId], references: [id])
+  authorId    String
+  comments    Comment[]
+}
+
+model Comment {
+  id          Int      @id @default(autoincrement())
+  content     String
+  createdAt   DateTime @default(now())
+
+  post        Post     @relation(fields: [postId], references: [id])
+  postId      Int
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    String
+}
+
+model DetailedReview {
+  id          Int        @id @default(autoincrement())
+  title       String
+  createAt    DateTime   @default(now())
+  watchedAt   DateTime
+  place       String
+  rating      Float
+  storyline   String
+  quotes      String
+  review      String
+
+  author      User       @relation(fields: [authorId], references: [id])
+  authorId    String
+  movie       Movie      @relation(fields: [movieId], references: [id])
+  movieId     Int
+}
+
+model BriefReview {
+  id        Int        @id @default(autoincrement())
+  createAt  DateTime   @default(now())
+  rating    Float
+  pros      String
+  cons      String
+
+  author     User       @relation(fields: [authorId], references: [id])
+  authorId   String
+  movie      Movie      @relation(fields: [movieId], references: [id])
+  movieId    Int
+}
+
+model Movie {
+  id                Int      @id @default(autoincrement())
+  titleKo           String
+  titleEn           String
+  openYear          String
+  openDate          String
+  genre             String
+  nation            String
+  directors         String
+  companys          String
+  time              String
+  actors            String
+  watchGradeNm      String
+
+  detailedReviews   DetailedReview[]
+  briefReviews      BriefReview[]
+}
