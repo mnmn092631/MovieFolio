@@ -1,3 +1,5 @@
+import styles from "./detailedReviewList.module.scss";
+
 export default function DetailedReviewList() {
   const data = {
     id: 1,
@@ -24,17 +26,150 @@ export default function DetailedReviewList() {
   };
 
   return (
-    <>
-      <div key={data.id}>
-        <span>{data.createAt.toLocaleDateString()}</span>
+    <div className={styles.container}>
+      <div key={data.id} className={styles.listCard}>
         <h3>
           {data.movie.title} <span>{data.rating}</span>
         </h3>
-        <h2>{data.title}</h2>
-        <p>{data.quotes}</p>
-        <p>{data.storyline}</p>
-        <p>{data.review}</p>
+        <div className={styles.title}>
+          <h2>{data.title}</h2>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <p>
+            <strong>quotes</strong>
+            <span>{data.quotes}</span>
+          </p>
+          <p>
+            <strong>storyline</strong>
+            <span>{data.storyline}</span>
+          </p>
+          <p>
+            <strong>review</strong>
+            <span>{data.review}</span>
+          </p>
+        </div>
       </div>
-    </>
+
+      <div key={data.id} className={styles.listCard}>
+        <h3>
+          {data.movie.title} <span>{data.rating}</span>
+        </h3>
+        <div className={styles.title}>
+          <h2>{data.title}</h2>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <p>
+            <strong>quotes</strong>
+            <span>{data.quotes}</span>
+          </p>
+          <p>
+            <strong>storyline</strong>
+            <span>{data.storyline}</span>
+          </p>
+          <p>
+            <strong>review</strong>
+            <span>{data.review}</span>
+          </p>
+        </div>
+      </div>
+
+      <div key={data.id} className={styles.listCard}>
+        <h3>
+          {data.movie.title} <span>{data.rating}</span>
+        </h3>
+        <div className={styles.title}>
+          <h2>{data.title}</h2>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <p>
+            <strong>quotes</strong>
+            <span>{data.quotes}</span>
+          </p>
+          <p>
+            <strong>storyline</strong>
+            <span>{data.storyline}</span>
+          </p>
+          <p>
+            <strong>review</strong>
+            <span>{data.review}</span>
+          </p>
+        </div>
+      </div>
+
+      <div key={data.id} className={styles.listCard}>
+        <h3>
+          {data.movie.title} <span>{data.rating}</span>
+        </h3>
+        <div className={styles.title}>
+          <h2>{data.title}</h2>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <p>
+            <strong>quotes</strong>
+            <span>{data.quotes}</span>
+          </p>
+          <p>
+            <strong>storyline</strong>
+            <span>{data.storyline}</span>
+          </p>
+          <p>
+            <strong>review</strong>
+            <span>{data.review}</span>
+          </p>
+        </div>
+      </div>
+
+      <div key={data.id} className={styles.listCard}>
+        <h3>
+          {data.movie.title} <span>{data.rating}</span>
+        </h3>
+        <div className={styles.title}>
+          <h2>{data.title}</h2>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <p>
+            <strong>quotes</strong>
+            <span>{data.quotes}</span>
+          </p>
+          <p>
+            <strong>storyline</strong>
+            <span>{data.storyline}</span>
+          </p>
+          <p>
+            <strong>review</strong>
+            <span>{data.review}</span>
+          </p>
+        </div>
+      </div>
+
+      <div key={data.id} className={styles.listCard}>
+        <h3>
+          {data.movie.title} <span>{data.rating}</span>
+        </h3>
+        <div className={styles.title}>
+          <h2>{data.title}</h2>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <p>
+            <strong>quotes</strong>
+            <span>{data.quotes}</span>
+          </p>
+          <p>
+            <strong>storyline</strong>
+            <span>{data.storyline}</span>
+          </p>
+          <p>
+            <strong>review</strong>
+            <span>{data.review}</span>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }

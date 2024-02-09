@@ -31,23 +31,30 @@
   margin-bottom: 10px;
 
   & > h3 > span {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 }
 
 .content {
   padding: 0 5px;
 
-  & > .pros {
-    margin-bottom: 8px;
-    & > svg {
-      color: #2E97FF;
+  & > p {
+    margin-bottom: 10px;
+    &:last-of-type {
+      margin-bottom: 0;
     }
-  }
 
-  & > .cons {
-    & > svg{
-      color: #f86d6d;
+    & > strong {
+      display: inline-block;
+      margin-bottom: 3px;
+      text-transform: capitalize;
+    }
+
+    & > span {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
     }
   }
 }
