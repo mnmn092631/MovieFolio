@@ -1,4 +1,5 @@
 import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
+import styles from "./briefReviewList.module.scss";
 
 export default function BriefReviewList() {
   const data = {
@@ -16,21 +17,139 @@ export default function BriefReviewList() {
   };
 
   return (
-    <>
-      <div key={data.id}>
-        <span>{data.createAt.toLocaleDateString()}</span>
-        <h3>
-          {data.movie.title} <span>{data.rating}</span>
-        </h3>
-        <div>
-          <FaThumbsUp />
-          <p>{data.pros}</p>
+    <div className={styles.container}>
+      <div key={data.id} className={styles.listCard}>
+        <div className={styles.title}>
+          <h3>
+            {data.movie.title} <span>{data.rating}</span>
+          </h3>
+          <span>{data.createAt.toLocaleDateString()}</span>
         </div>
-        <div>
-          <FaThumbsDown />
-          <p>{data.cons}</p>
+        <div className={styles.content}>
+          <div className={styles.pros}>
+            <FaThumbsUp />
+            <p>{data.pros}</p>
+          </div>
+          <div className={styles.cons}>
+            <FaThumbsDown />
+            <p>{data.cons}</p>
+          </div>
         </div>
       </div>
-    </>
+
+      <div key={data.id} className={styles.listCard}>
+        <div className={styles.title}>
+          <h3>
+            {data.movie.title} <span>{data.rating}</span>
+          </h3>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.pros}>
+            <FaThumbsUp />
+            <p>{data.pros}</p>
+          </div>
+          <div className={styles.cons}>
+            <FaThumbsDown />
+            <p>{data.cons}</p>
+          </div>
+        </div>
+      </div>
+
+      <div key={data.id} className={styles.listCard}>
+        <div className={styles.title}>
+          <h3>
+            {data.movie.title} <span>{data.rating}</span>
+          </h3>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.pros}>
+            <FaThumbsUp />
+            <p>{data.pros}</p>
+          </div>
+          <div className={styles.cons}>
+            <FaThumbsDown />
+            <p>{data.cons}</p>
+          </div>
+        </div>
+      </div>
+
+      <div key={data.id} className={styles.listCard}>
+        <div className={styles.title}>
+          <h3>
+            {data.movie.title} <span>{data.rating}</span>
+          </h3>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.pros}>
+            <FaThumbsUp />
+            <p>{data.pros}</p>
+          </div>
+          <div className={styles.cons}>
+            <FaThumbsDown />
+            <p>{data.cons}</p>
+          </div>
+        </div>
+      </div>
+
+      <div key={data.id} className={styles.listCard}>
+        <div className={styles.title}>
+          <h3>
+            {data.movie.title} <span>{data.rating}</span>
+          </h3>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.pros}>
+            <FaThumbsUp />
+            <p>{data.pros}</p>
+          </div>
+          <div className={styles.cons}>
+            <FaThumbsDown />
+            <p>{data.cons}</p>
+          </div>
+        </div>
+      </div>
+
+      <div key={data.id} className={styles.listCard}>
+        <div className={styles.title}>
+          <h3>
+            {data.movie.title} <span>{data.rating}</span>
+          </h3>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.pros}>
+            <FaThumbsUp />
+            <p>{data.pros}</p>
+          </div>
+          <div className={styles.cons}>
+            <FaThumbsDown />
+            <p>{data.cons}</p>
+          </div>
+        </div>
+      </div>
+
+      <div key={data.id} className={styles.listCard}>
+        <div className={styles.title}>
+          <h3>
+            {data.movie.title} <span>{data.rating}</span>
+          </h3>
+          <span>{data.createAt.toLocaleDateString()}</span>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.pros}>
+            <FaThumbsUp />
+            <p>{data.pros}</p>
+          </div>
+          <div className={styles.cons}>
+            <FaThumbsDown />
+            <p>{data.cons}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
