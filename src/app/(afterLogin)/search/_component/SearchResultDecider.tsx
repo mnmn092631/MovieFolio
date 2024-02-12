@@ -15,17 +15,15 @@ export default function SearchResultDecider() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `http://localhost:3000/api/search?keyword=${keyword}`,
-        );
+        const response = await fetch(`/api/search?keyword=${keyword}`);
         setStatus(response.status);
-        if (status === 200) {
+        if (response.status === 200) {
           const data = await response.json();
           setMovies(data);
         }
-        setLoading(false);
       } catch (error) {
         console.log(error);
+      } finally {
         setLoading(false);
       }
     };
@@ -34,6 +32,7 @@ export default function SearchResultDecider() {
   }, [keyword]);
 
   if (!keyword) return <BoxOffice />;
+  if (loading) return <p>...loading</p>;
   if (status === 404) return <p>No search results found.</p>;
   return (
     <div>
