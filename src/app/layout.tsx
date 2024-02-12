@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.scss";
+import AuthSession from "@/app/_component/AuthSession";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -19,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <AuthSession>{children}</AuthSession>
+      </body>
     </html>
   );
 }
