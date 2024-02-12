@@ -99,7 +99,7 @@ model DetailedReview {
   author      User       @relation(fields: [authorId], references: [id])
   authorId    String
   movie       Movie      @relation(fields: [movieId], references: [id])
-  movieId     Int
+  movieId     String
 }
 
 model BriefReview {
@@ -112,11 +112,11 @@ model BriefReview {
   author     User       @relation(fields: [authorId], references: [id])
   authorId   String
   movie      Movie      @relation(fields: [movieId], references: [id])
-  movieId    Int
+  movieId    String
 }
 
 model Movie {
-  id                Int      @id @default(autoincrement())
+  id                String      @id
   titleKo           String
   titleEn           String
   openYear          String
@@ -126,7 +126,6 @@ model Movie {
   directors         String
   companys          String
   time              String
-  actors            String
   watchGradeNm      String
 
   detailedReviews   DetailedReview[]
