@@ -123,8 +123,6 @@ model Movie {
   openDate          String
   genre             String
   nation            String
-  directors         String
-  companys          String
   time              String
   watchGradeNm      String
 

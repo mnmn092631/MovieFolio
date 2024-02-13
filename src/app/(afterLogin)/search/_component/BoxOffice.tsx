@@ -1,5 +1,9 @@
 "use client";
+
 import { useEffect, useState } from "react";
+import styles from "./boxOffice.module.scss";
+import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
+import cx from "classnames";
 
 interface BoxOffice {
   rank: string;
@@ -8,6 +12,25 @@ interface BoxOffice {
   movieCd: string;
   movieNm: string;
   openDt: string;
+}
+
+function convertRankIntenToIcon(rankInten: string) {
+  const rankIntenNumber = Number(rankInten);
+  if (rankIntenNumber === 0) return;
+  else if (rankIntenNumber > 0)
+    return (
+      <>
+        <MdArrowDropUp />
+        {rankIntenNumber}
+      </>
+    );
+  else
+    return (
+      <>
+        <MdArrowDropDown />
+        {rankIntenNumber * -1}
+      </>
+    );
 }
 
 export default function BoxOffice() {
@@ -34,23 +57,49 @@ export default function BoxOffice() {
     fetchData();
   }, []);
 
-  if (loading) return <p>...loading</p>;
-  if (status === 404) return <p>Box office information is not available.</p>;
+  if (loading) return <p className={styles.container}>...loading</p>;
+  if (status === 404)
+    return (
+      <p className={styles.container}>
+        Box office information is not available.
+      </p>
+    );
   return (
-    <div>
-      {boxOffice &&
-        boxOffice.map((item) => (
-          <div key={item.movieCd}>
-            <span>{item.rank}</span>
-            <span>
-              {item.rankOldAndNew === "NEW"
-                ? item.rankOldAndNew
-                : item.rankInten}
-            </span>
-            <span>{item.movieNm}</span>
-            <span>{item.openDt}</span>
-          </div>
-        ))}
+    <div className={styles.container}>
+      <h1>Box Office</h1>
+      {boxOffice && (
+        <>
+          <ul className={styles.boxOfficeListItem}>
+            <li className={styles.rank}>rank</li>
+            <li className={styles.blank} />
+            <li className={styles.movieTitle}>title</li>
+            <li className={styles.openDt}>open date</li>
+          </ul>
+          <ul>
+            {boxOffice.map((item) => (
+              <li key={item.movieCd} className={styles.boxOfficeListItem}>
+                <span className={styles.rank}>{item.rank}</span>
+                <span
+                  className={cx(
+                    styles.blank,
+                    Number(item.rankInten) === 0
+                      ? ""
+                      : Number(item.rankInten) > 0
+                        ? styles.blue
+                        : styles.red,
+                  )}
+                >
+                  {item.rankOldAndNew === "NEW"
+                    ? item.rankOldAndNew
+                    : convertRankIntenToIcon(item.rankInten)}
+                </span>
+                <span className={styles.movieTitle}>{item.movieNm}</span>
+                <span className={styles.openDt}>{item.openDt}</span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   );
 }

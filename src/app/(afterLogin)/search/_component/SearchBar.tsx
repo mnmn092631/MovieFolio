@@ -1,8 +1,8 @@
 "use client";
 
-import { BiSearch } from "react-icons/bi";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
+import styles from "./searchBar.module.scss";
 
 export default function SearchBar() {
   const router = useRouter();
@@ -14,12 +14,10 @@ export default function SearchBar() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <input type="text" ref={keywordInputRef} />
-      <button onClick={onClick}>
-        <BiSearch />
-        검색
-      </button>
+      {/*  todo: 엔터키로 검색 가능하게 설정 */}
+      <button onClick={onClick}>search</button>
     </div>
   );
 }

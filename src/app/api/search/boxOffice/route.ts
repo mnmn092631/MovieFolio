@@ -14,6 +14,7 @@ interface BoxOfficeAPIData {
 }
 
 export async function GET() {
+  // todo 오늘 날짜 구하는 로직 함수로 빼기
   const now = new Date();
   const year = now.getFullYear();
   const month = ("0" + (1 + now.getMonth())).slice(-2);
