@@ -77,7 +77,7 @@ export async function GET(req: NextApiRequest) {
     const mappedData = await Promise.all(mappedDataPromises);
 
     for (const data of mappedData) {
-      if (!data) return;
+      if (!data) continue;
 
       await prisma.movie.create({
         data: {

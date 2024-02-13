@@ -7,3 +7,62 @@ p.container {
   font-weight: 700;
   text-align: center;
 }
+
+div.container {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 30px;
+  column-gap: 2%;
+  padding: 50px 100px;
+}
+
+.searchItem {
+  width: 32%;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(221, 221, 221, 0.2);
+  box-shadow: 1px 4px 8px 1px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+
+
+  &:hover {
+    background-color: rgba(221, 221, 221, 0.3);
+    box-shadow: 1px 8px 16px 1px rgba(0,0,0,0.1);
+  }
+
+  & > p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    margin-bottom: 8px;
+
+    & > strong {
+      margin-right: 5px;
+      font-size: 1.2rem;
+    }
+  }
+
+  & > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    & > span {
+      position: relative;
+      margin-right: 20px;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    & > span + span:before {
+      content: "·";
+      position: absolute;
+      top: 50%;
+      left: -10px;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

@@ -17,6 +17,13 @@ interface Movie {
   watchGradeNm: string;
 }
 
+function convertDateFormatToDot(dateStr: string) {
+  const year = dateStr.slice(0, 4);
+  const month = dateStr.slice(4, 6);
+  const date = dateStr.slice(6, 8);
+  return `${year}. ${month}. ${date}.`;
+}
+
 export default function SearchResultDecider() {
   const [status, setStatus] = useState<number>();
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -51,16 +58,23 @@ export default function SearchResultDecider() {
   return (
     <div className={styles.container}>
       {movies.map((movie) => (
-        <div key={movie.id}>
-          <span>
+        <div key={movie.id} className={styles.searchItem}>
+          <p>
             <strong>{movie.titleKo}</strong>
             <span>{movie.titleEn}</span>
-          </span>
-          <span>{movie.openDate}</span>
-          <span>{movie.genre}</span>
-          <span>{movie.nation}</span>
-          <span>{movie.time}</span>
-          <span>{movie.watchGradeNm}</span>
+          </p>
+          <div>
+            {(movie.openYear || movie.openDate) && (
+              <span>
+                {(movie.openDate && convertDateFormatToDot(movie.openDate)) ||
+                  movie.openYear}
+              </span>
+            )}
+            {movie.time && <span>{movie.time} mins</span>}
+            {movie.nation && <span>{movie.nation.replaceAll(",", ", ")}</span>}
+            {movie.genre && <span>{movie.genre.replaceAll(",", ", ")}</span>}
+            {movie.watchGradeNm && <span>{movie.watchGradeNm}</span>}
+          </div>
         </div>
       ))}
     </div>
