@@ -31,9 +31,9 @@ AUTH_GOOGLE_SECRET=
 DATABASE_URL=
 
 // 영화진흥위원회 오픈API
-MOVIE_LIST_API=영화 목록
-MOVIE_INFO_API=영화 상세정보
-MOVIE_BOX_OFFICE=일별 박스오피스
+MOVIE_LIST_BY_TITLE_API=영화 목록&movieNm=
+MOVIE_INFO_BY_ID_API=영화 상세정보&movieCd=
+MOVIE_BOX_OFFICE=일별 박스오피스&targetDt=
 ```
 
 ```sh
