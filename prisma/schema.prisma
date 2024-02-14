@@ -88,7 +88,7 @@ model Comment {
 model DetailedReview {
   id          Int        @id @default(autoincrement())
   title       String
-  createAt    DateTime   @default(now())
+  createdAt    DateTime   @default(now())
   watchedAt   DateTime
   place       String
   rating      Float
@@ -104,7 +104,7 @@ model DetailedReview {
 
 model BriefReview {
   id        Int        @id @default(autoincrement())
-  createAt  DateTime   @default(now())
+  createdAt  DateTime   @default(now())
   rating    Float
   pros      String
   cons      String

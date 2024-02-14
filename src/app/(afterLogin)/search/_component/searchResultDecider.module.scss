@@ -34,7 +34,7 @@ div.container {
   & > p {
     display: flex;
     flex-wrap: wrap;
-    align-items: end;
+    align-items: flex-end;
     margin-bottom: 8px;
 
     & > strong {

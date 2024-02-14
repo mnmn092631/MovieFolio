@@ -1,33 +1,21 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import BoxOffice from "@/app/(afterLogin)/search/_component/BoxOffice";
 import { useEffect, useState } from "react";
 import styles from "./searchResultDecider.module.scss";
-
-interface Movie {
-  id: string;
-  titleKo: string;
-  titleEn: string;
-  openYear: string;
-  openDate: string;
-  genre: string;
-  nation: string;
-  time: string;
-  watchGradeNm: string;
-}
-
-function convertDateFormatToDot(dateStr: string) {
-  const year = dateStr.slice(0, 4);
-  const month = dateStr.slice(4, 6);
-  const date = dateStr.slice(6, 8);
-  return `${year}. ${month}. ${date}.`;
-}
+import { Movie } from "@/model/Movie";
+import convertDateFormatToDot from "@/app/(afterLogin)/_lib/convertDateFormatToDot";
 
 export default function SearchResultDecider() {
   const [status, setStatus] = useState<number>();
-  const [movies, setMovies] = useState<Movie[]>([]);
+  const [movies, setMovies] = useState<
+    Omit<Movie, "detailedReviews" | "briefReviews">[]
+  >([]);
   const [loading, setLoading] = useState(true);
+
+  const router = useRouter();
+  const onClick = (id: string) => router.push(`/movies?id=${id}`);
 
   const searchParams = useSearchParams();
   const keyword = searchParams.get("keyword");
@@ -58,7 +46,11 @@ export default function SearchResultDecider() {
   return (
     <div className={styles.container}>
       {movies.map((movie) => (
-        <div key={movie.id} className={styles.searchItem}>
+        <div
+          key={movie.id}
+          className={styles.searchItem}
+          onClick={() => onClick(movie.id)}
+        >
           <p>
             <strong>{movie.titleKo}</strong>
             <span>{movie.titleEn}</span>

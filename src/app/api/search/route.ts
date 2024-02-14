@@ -1,6 +1,5 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
-import { NextApiRequest } from "next";
 
 interface MovieListAPIData {
   movieListResult: {
@@ -26,10 +25,8 @@ interface MovieInfoAPIData {
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextApiRequest) {
-  if (!req.url) return new NextResponse("", { status: 400 });
-
-  const { searchParams } = new URL(req.url);
+export async function GET(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams;
   const keyword = searchParams.get("keyword");
 
   if (!keyword) return new NextResponse("", { status: 400 });
@@ -44,8 +41,6 @@ export async function GET(req: NextApiRequest) {
 
     const mappedDataPromises = findMovie.movieListResult.movieList.map(
       async (item) => {
-        if (!item.movieCd) return;
-
         const exData = await prisma.movie.findFirst({
           where: {
             id: item.movieCd,
