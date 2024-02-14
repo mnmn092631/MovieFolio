@@ -27,6 +27,9 @@ export default function Page() {
     fetchMovie();
   }, [id]);
 
+  const onClickToCreateDetailedReview = () =>
+    router.push(`/review/detailed?movieId=${id}`);
+
   if (!movie) return null;
 
   return (
@@ -104,7 +107,9 @@ export default function Page() {
         </div>
 
         <div className={styles.createButtons}>
-          <button>create detailed review</button>
+          <button onClick={onClickToCreateDetailedReview}>
+            create detailed review
+          </button>
           <button>create brief review</button>
         </div>
       </div>
