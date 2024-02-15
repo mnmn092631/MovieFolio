@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  display: flex;
+  display: inline-flex;
   flex-direction: row-reverse;
   align-items: center;
   border: none;
@@ -13,11 +13,9 @@
 
 .label {
   display: inline-block;
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: #DDDDDD;
   overflow: hidden;
-  transition: all 250ms ease-in-out;
-  cursor: pointer;
 }
 
 .half {
@@ -31,12 +29,6 @@
   }
 }
 
-.input:checked ~ .label,
-.label:hover,
-.label:hover ~ .label,
-.input:checked + .label:hover,
-.input:checked ~ .label:hover,
-.input:checked ~ .label:hover ~ .label,
-.label:hover ~ .input:checked ~ .label {
+.input:checked ~ .label {
   color: #f86d6d;
 }

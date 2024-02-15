@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import styles from "./detailedReviewList.module.scss";
 import { DetailedReview } from "@/model/DetailedReview";
 import { useEffect, useState } from "react";
+import ReadOnlyStarRating from "@/app/(afterLogin)/_component/ReadOnlyStarRating";
 
 export default function DetailedReviewList() {
   const [reviews, setReviews] = useState<DetailedReview[]>();
@@ -36,12 +37,19 @@ export default function DetailedReviewList() {
           className={styles.listCard}
           onClick={() => onClick(review.id)}
         >
-          <h3>
-            {review.movie.titleKo} <span>{review.rating}</span>
-          </h3>
+          <h4 className={styles.movieNameRating}>
+            {review.movie.titleKo}
+            <span>
+              <ReadOnlyStarRating
+                name={review.id * Math.floor(Math.random() * 100000)}
+                rating={review.rating}
+              />
+              <strong>{review.rating}</strong>
+            </span>
+          </h4>
           <div className={styles.title}>
             <h2>{review.title}</h2>
-            <span>{review.createdAt}</span>
+            <span>{review.createdAt.slice(0, 19).replace("T", " ")}</span>
           </div>
           <div className={styles.content}>
             <p>
