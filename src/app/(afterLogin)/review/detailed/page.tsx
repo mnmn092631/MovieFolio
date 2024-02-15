@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./page.module.scss";
 import { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import { DetailedReview } from "@/model/DetailedReview";
+import StarRating from "@/app/(afterLogin)/review/detailed/_component/StarRating";
 
 export default function Page() {
   const [form, setForm] = useState<
@@ -42,7 +43,7 @@ export default function Page() {
       return;
 
     try {
-      const res = await fetch("/api/review/detailed", {
+      await fetch("/api/review/detailed", {
         method: "POST",
         body: JSON.stringify({
           title: form.title,
@@ -99,18 +100,9 @@ export default function Page() {
         </div>
 
         <div>
-          {/* todo: rating */}
-          <label htmlFor="rating">rating</label>
-          <input
-            type="number"
-            id="rating"
-            name="rating"
-            min={0}
-            max={5}
-            step={0.5}
-            value={form?.rating}
-            onChange={onChange}
-          />
+          <label>rating</label>
+          <StarRating onChange={onChange} />
+          <p>{form.rating}</p>
         </div>
 
         <div>
