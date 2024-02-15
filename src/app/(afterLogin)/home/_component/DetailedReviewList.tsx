@@ -28,8 +28,6 @@ export default function DetailedReviewList() {
 
   if (!reviews) return null;
 
-  console.log(reviews[0]);
-
   return (
     <div className={styles.container}>
       {reviews.map((review) => (

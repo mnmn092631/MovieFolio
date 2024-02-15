@@ -1,20 +1,18 @@
 .logoutButton {
-  display: inline-flex;
-  align-items: center;
-  column-gap: 8px;
-  background-color: transparent;
-  color: #FFFFFF;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-align: left;
-  cursor: pointer;
-  transition: color 250ms ease-in-out;
+	display: inline-flex;
+	align-items: center;
+	column-gap: 8px;
+	color: #ffffff;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: left;
+	transition: color 250ms ease-in-out;
 
-  & > svg {
-    font-size: 2.3rem;
-  }
+	& > svg {
+		font-size: 2.3rem;
+	}
 
-  &:hover{
-    color: #467047;
-  }
+	&:hover {
+		color: #467047;
+	}
 }

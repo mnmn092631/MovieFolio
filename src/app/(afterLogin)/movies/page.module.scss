@@ -1,72 +1,69 @@
 .backButton {
-  display: inline-flex;
-  align-items: center;
-  margin: 30px 0 0 30px;
-  padding: 5px 10px;
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 250ms ease-in-out;
+	display: inline-flex;
+	align-items: center;
+	margin: 30px 0 0 30px;
+	padding: 5px 10px;
+	font-size: 1.2rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	transition: all 250ms ease-in-out;
 
-  &:hover {
-    color: #467047;
-  }
+	&:hover {
+		color: #467047;
+	}
 
-  & > svg{
-    margin-top: 2px;
-  }
+	& > svg {
+		margin-top: 2px;
+	}
 }
 
 .container {
-  padding: 50px;
+	padding: 50px;
 }
 
 .title {
-  text-align: center;
-  margin-bottom: 15px;
+	text-align: center;
+	margin-bottom: 15px;
 
-  & > span {
-    font-size: 1.3rem;
-  }
+	& > span {
+		font-size: 1.3rem;
+	}
 }
 
 .info {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 10px;
-  margin-bottom: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 10px;
+	margin-bottom: 15px;
 
-  & > span >  strong {
-    text-transform: uppercase;
-    margin-right: 5px;
-  }
+	& > span > strong {
+		text-transform: uppercase;
+		margin-right: 5px;
+	}
 }
 
 .briefReviews {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .createButtons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	column-gap: 30px;
 
-  & > button {
-    padding: 5px 10px;
-    border-radius: 4px;
-    color: #467047;
-    text-transform: capitalize;
-    font-weight: 700;
-    cursor: pointer;
-    background-color: #FFE990;
-    transition: all 250ms ease-in-out;
+	& > button {
+		padding: 5px 10px;
+		border-radius: 4px;
+		color: #467047;
+		text-transform: capitalize;
+		font-weight: 700;
+		background-color: #ffe990;
+		transition: all 250ms ease-in-out;
 
-    &:hover {
-      background-color: #FFDB83;
-    }
-  }
+		&:hover {
+			background-color: #ffdb83;
+		}
+	}
 }

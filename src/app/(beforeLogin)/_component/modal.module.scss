@@ -1,112 +1,108 @@
 .container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #00000066;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #00000066;
 
-  & > div {
-    position: relative;
-    max-width: 70dvw;
-    width: 500px;
-    background-color: #FFFFFF;
-    padding: 50px;
-    border-radius: 5px;
+	& > div {
+		position: relative;
+		max-width: 70dvw;
+		width: 500px;
+		background-color: #ffffff;
+		padding: 50px;
+		border-radius: 5px;
 
-    & > form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 5px;
-    }
-  }
+		& > form {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+			margin-top: 5px;
+		}
+	}
 }
 
 .closeButton {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background-color: transparent;
-  cursor: pointer;
-  transition: background-color 250ms ease-in-out;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	transition: background-color 250ms ease-in-out;
 
-  &:hover {
-    background-color: #0F14190C;
-  }
+	&:hover {
+		background-color: #19191a0d;
+	}
 }
 
 .inputDiv {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  height: 56px;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 56px;
 
-  & > label {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 60px;
-    padding: 10px 10px 0;
-    border: 1px solid #CFD9DEFF;
-    border-radius: 4px;
-    font-size: 13px;
-    color: #536471FF;
-    text-transform: uppercase;
-    cursor: text;
-  }
+	& > label {
+		display: inline-block;
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 60px;
+		padding: 10px 10px 0;
+		border: 1px solid #cfd9deff;
+		border-radius: 4px;
+		font-size: 13px;
+		color: #536471ff;
+		text-transform: uppercase;
+		cursor: text;
+	}
 
-  & > input {
-    width: 100%;
-    padding: 12px 8px 8px 10px;
-    margin-top: 18px;
-    font-size: 17px;
-  }
+	& > input {
+		width: 100%;
+		padding: 12px 8px 8px 10px;
+		margin-top: 18px;
+		font-size: 17px;
+	}
 }
 
 .submitButton {
-  padding: 10px 0;
-  background-color: #FFDB83;
-  color: #467047;
-  font-weight: 700;
-  border-radius: 4px;
-  text-transform: capitalize;
-  cursor: pointer;
-  transition: background-color 250ms ease-in-out;
+	padding: 10px 0;
+	background-color: #ffdb83;
+	color: #467047;
+	font-weight: 700;
+	border-radius: 4px;
+	text-transform: capitalize;
+	transition: background-color 250ms ease-in-out;
 
-  &:hover {
-    background-color: #FFE990;
-  }
+	&:hover {
+		background-color: #ffe990;
+	}
 }
 
 .snsButtonWrapper {
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
-  margin-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	row-gap: 10px;
+	margin-bottom: 20px;
 
-  & > button{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    column-gap: 5px;
-    padding: 8px;
-    border: 1px solid #DDDDDD;
-    border-radius: 4px;
-    color: #536471FF;
-    background-color: #FFFFFF;
-    cursor: pointer;
-    transition: all 250ms ease-in-out;
+	& > button {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		column-gap: 5px;
+		padding: 8px;
+		border: 1px solid #dddddd;
+		border-radius: 4px;
+		color: #536471ff;
+		background-color: #ffffff;
+		transition: all 250ms ease-in-out;
 
-    &:hover {
-      background-color: rgba(221, 221, 221, 0.4);
-    }
-  }
+		&:hover {
+			background-color: rgba(221, 221, 221, 0.4);
+		}
+	}
 }

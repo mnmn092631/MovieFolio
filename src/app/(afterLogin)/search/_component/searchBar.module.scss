@@ -1,37 +1,35 @@
 .container {
-  width: 50%;
-  margin: 50px auto 0;
-  display: flex;
+	width: 50%;
+	margin: 50px auto 0;
+	display: flex;
 
-  & > input {
-    flex: 1;
-    margin-right: 10px;
-    padding: 10px;
-    border-bottom: 1px solid #000000;
-    transition: all 150ms ease-in;
+	& > input {
+		flex: 1;
+		margin-right: 10px;
+		padding: 10px;
+		border-bottom: 1px solid #000000;
+		transition: all 150ms ease-in;
 
-    &:focus {
-      background-color: rgba(221, 221, 221, 0.4);
-    }
-  }
+		&:focus {
+			background-color: #dddddd66;
+		}
+	}
 
-  & > button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    font-size: 1.3rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 250ms ease-in-out;
+	& > button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 1.3rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		transition: all 250ms ease-in-out;
 
-    & > svg {
-      margin-top: 4px;
-    }
+		& > svg {
+			margin-top: 4px;
+		}
 
-    &:hover {
-      color: #8fbc8fff;
-    }
-  }
+		&:hover {
+			color: #8fbc8f;
+		}
+	}
 }
