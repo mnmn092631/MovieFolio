@@ -2,15 +2,20 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./page.module.scss";
-import { ChangeEventHandler, MouseEventHandler, useState } from "react";
+import {
+  ChangeEventHandler,
+  MouseEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import { DetailedReview } from "@/model/DetailedReview";
-import StarRating from "@/app/(afterLogin)/review/detailed/_component/StarRating";
+import StarRating from "../_component/StarRating";
 
 export default function Page() {
   const [form, setForm] = useState<
     Omit<
       DetailedReview,
-      "id" | "createdAt" | "author" | "authorId" | "movie" | "movieId"
+      "id" | "createdAt" | "author" | "authorId" | "movieId" | "movie"
     >
   >({
     title: "",
@@ -23,7 +28,26 @@ export default function Page() {
   });
   const router = useRouter();
   const searchParams = useSearchParams();
-  const movieId = searchParams.get("movieId");
+  const id = searchParams.get("id");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch(`/api/review/detailed?id=${id}`).then((res) =>
+        res.json(),
+      );
+      setForm({
+        title: data.title,
+        watchedAt: data.watchedAt.slice(0, 10),
+        place: data.place,
+        rating: data.rating,
+        storyline: data.storyline,
+        quotes: data.quotes,
+        review: data.review,
+      });
+    };
+
+    fetchData();
+  }, [id]);
 
   const onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (
     e,
@@ -37,15 +61,15 @@ export default function Page() {
       !form.place ||
       !form.storyline ||
       !form.quotes ||
-      !form.review ||
-      !movieId
+      !form.review
     )
       return;
 
     try {
       await fetch("/api/review/detailed", {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify({
+          id: Number(id),
           title: form.title,
           watchedAt: new Date(form.watchedAt).toISOString(),
           place: form.place,
@@ -53,7 +77,6 @@ export default function Page() {
           storyline: form.storyline,
           quotes: form.quotes,
           review: form.review,
-          movieId,
         }),
       }).then((data) => {
         if (data.ok) router.push("/home");
@@ -113,6 +136,7 @@ export default function Page() {
             rows={5}
             value={form?.storyline}
             onChange={onChange}
+            wrap="hard"
           />
         </div>
 
@@ -124,6 +148,7 @@ export default function Page() {
             rows={5}
             value={form?.quotes}
             onChange={onChange}
+            wrap="hard"
           />
         </div>
 
@@ -135,10 +160,11 @@ export default function Page() {
             rows={5}
             value={form?.review}
             onChange={onChange}
+            wrap="hard"
           />
         </div>
 
-        <button onClick={onClick}>create</button>
+        <button onClick={onClick}>edit</button>
       </form>
     </div>
   );

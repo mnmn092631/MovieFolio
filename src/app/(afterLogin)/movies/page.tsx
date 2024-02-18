@@ -28,7 +28,7 @@ export default function Page() {
   }, [id]);
 
   const onClickToCreateDetailedReview = () =>
-    router.push(`/review/detailed?movieId=${id}`);
+    router.push(`/home/detailed/create?movieId=${id}`);
 
   if (!movie) return null;
 

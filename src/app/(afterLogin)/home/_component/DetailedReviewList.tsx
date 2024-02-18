@@ -25,7 +25,7 @@ export default function DetailedReviewList() {
     fetchReviews();
   }, []);
 
-  const onClick = (id: number) => router.push(`/home/detailedReview?id=${id}`);
+  const onClick = (id: number) => router.push(`/home/detailed?id=${id}`);
 
   if (!reviews) return null;
 

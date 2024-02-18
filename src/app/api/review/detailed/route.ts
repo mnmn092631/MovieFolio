@@ -94,8 +94,10 @@ export async function PUT(req: NextRequest) {
     storyline,
     quotes,
     review,
-  }: Omit<DetailedReview, "createdAt" | "author" | "authorId" | "movie"> =
-    await req.json();
+  }: Omit<
+    DetailedReview,
+    "createdAt" | "author" | "authorId" | "movieId" | "movie"
+  > = await req.json();
 
   try {
     await prisma.detailedReview.update({

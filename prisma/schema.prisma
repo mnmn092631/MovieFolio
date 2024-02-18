@@ -86,20 +86,20 @@ model Comment {
 }
 
 model DetailedReview {
-  id          Int        @id @default(autoincrement())
-  title       String
+  id           Int        @id @default(autoincrement())
+  title        String
   createdAt    DateTime   @default(now())
-  watchedAt   DateTime
-  place       String
-  rating      Float
-  storyline   String
-  quotes      String
-  review      String
+  watchedAt    DateTime
+  place        String
+  rating       Float
+  storyline    String     @db.Text
+  quotes       String     @db.Text
+  review       String     @db.Text
 
-  author      User       @relation(fields: [authorId], references: [id])
-  authorId    String
-  movie       Movie      @relation(fields: [movieId], references: [id])
-  movieId     String
+  author       User       @relation(fields: [authorId], references: [id])
+  authorId     String
+  movie        Movie      @relation(fields: [movieId], references: [id])
+  movieId      String
 }
 
 model BriefReview {

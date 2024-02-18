@@ -15,10 +15,11 @@ interface BoxOfficeAPIData {
 
 export async function GET() {
   // todo 오늘 날짜 구하는 로직 함수로 빼기
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = ("0" + (1 + now.getMonth())).slice(-2);
-  const date = ("0" + now.getDate()).slice(-2);
+  const today = new Date();
+  const yesterday = new Date(today.setDate(today.getDate() - 1));
+  const year = yesterday.getFullYear();
+  const month = ("0" + (1 + yesterday.getMonth())).slice(-2);
+  const date = ("0" + yesterday.getDate()).slice(-2);
 
   const response = await fetch(
     `${process.env.MOVIE_BOX_OFFICE}${year + month + date}`,
