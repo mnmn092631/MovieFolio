@@ -1,0 +1,82 @@
+.container {
+	padding: 50px;
+}
+
+.createForm {
+	width: 85%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	row-gap: 15px;
+
+	& > div {
+		width: inherit;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		column-gap: 10px;
+		row-gap: 5px;
+
+		& > label {
+			text-align: right;
+			text-transform: capitalize;
+			font-size: 1.2rem;
+			font-weight: 700;
+
+			&.iconLabel {
+				display: flex;
+				align-items: center;
+				column-gap: 5px;
+
+				& > svg {
+					margin-top: 1px;
+				}
+			}
+
+			&.pros {
+				& > svg {
+					color: #2e97ff;
+				}
+			}
+
+			&.cons {
+				& > svg {
+					color: #f86d6d;
+				}
+			}
+		}
+
+		& > input,
+		textarea {
+			width: 100%;
+			padding: 5px;
+			border-radius: 4px;
+			background-color: rgba(221, 221, 221, 0.2);
+
+			&:active, &:focus {
+				background-color: rgba(221, 221, 221, 0.4);
+			}
+		}
+
+		& > span {
+			margin-top: 1px;
+		}
+	}
+
+	& > button {
+		padding: 5px 10px;
+		border-radius: 4px;
+		background-color: #ffe990;
+		color: #467047;
+		font-weight: 700;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: all 250ms ease-in-out;
+
+		&:hover {
+			background-color: #ffdb83;
+		}
+	}
+}

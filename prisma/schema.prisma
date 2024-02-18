@@ -103,11 +103,11 @@ model DetailedReview {
 }
 
 model BriefReview {
-  id        Int        @id @default(autoincrement())
+  id         Int         @id @default(autoincrement())
   createdAt  DateTime   @default(now())
-  rating    Float
-  pros      String
-  cons      String
+  rating     Float
+  pros       String      @db.Text
+  cons       String      @db.Text
 
   author     User       @relation(fields: [authorId], references: [id])
   authorId   String

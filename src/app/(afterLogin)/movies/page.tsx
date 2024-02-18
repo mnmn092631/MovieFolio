@@ -30,6 +30,9 @@ export default function Page() {
   const onClickToCreateDetailedReview = () =>
     router.push(`/home/detailed/create?movieId=${id}`);
 
+  const onClickToCreateBriefReview = () =>
+    router.push(`/home/brief/create?movieId=${id}`);
+
   if (!movie) return null;
 
   return (
@@ -110,7 +113,9 @@ export default function Page() {
           <button onClick={onClickToCreateDetailedReview}>
             create detailed review
           </button>
-          <button>create brief review</button>
+          <button onClick={onClickToCreateBriefReview}>
+            create brief review
+          </button>
         </div>
       </div>
     </>

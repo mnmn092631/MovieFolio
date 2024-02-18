@@ -4,6 +4,7 @@ import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 import styles from "./briefReviewList.module.scss";
 import { BriefReview } from "@/model/BriefReview";
 import { useEffect, useState } from "react";
+import ReadOnlyStarRating from "@/app/(afterLogin)/_component/ReadOnlyStarRating";
 
 export default function BriefReviewList() {
   const [reviews, setReviews] = useState<BriefReview[]>();
@@ -27,9 +28,13 @@ export default function BriefReviewList() {
         <div key={review.id} className={styles.listCard}>
           <div className={styles.title}>
             <h3>
-              {review.movie.titleKo} <span>{review.rating}</span>
+              {review.movie.titleKo}
+              <span>
+                <ReadOnlyStarRating name={review.id} rating={review.rating} />
+                {review.rating}
+              </span>
             </h3>
-            <span>{review.createdAt}</span>
+            <span>{review.createdAt.slice(0, 19).replace("T", " ")}</span>
           </div>
           <div className={styles.content}>
             <div className={styles.pros}>

@@ -37,6 +37,13 @@
 .content {
 	padding: 0 5px;
 
+	& > div > p {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 3;
+		overflow: hidden;
+	}
+
 	& > .pros {
 		margin-bottom: 8px;
 		& > svg {

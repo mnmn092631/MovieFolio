@@ -34,11 +34,12 @@ function StarInput({ value, isHalf, onChange, isChecked }: StarInputProps) {
 
 interface Props {
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  checkedValue?: number;
+  checkedValue: number;
 }
 
 export default function StarRating({ onChange, checkedValue }: Props) {
   const rateArr = Array.from({ length: 10 }, (_, i) => i * -0.5 + 5);
+
   return (
     <fieldset className={styles.container}>
       {rateArr.map((v, i) => (
@@ -47,7 +48,7 @@ export default function StarRating({ onChange, checkedValue }: Props) {
           value={v}
           isHalf={i % 2 === 1}
           onChange={onChange}
-          isChecked={!!(checkedValue && checkedValue === v)}
+          isChecked={checkedValue === v}
         />
       ))}
     </fieldset>

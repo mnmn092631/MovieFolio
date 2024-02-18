@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./page.module.scss";
 import { ChangeEventHandler, MouseEventHandler, useState } from "react";
 import { DetailedReview } from "@/model/DetailedReview";
-import StarRating from "../_component/StarRating";
+import StarRating from "../../_component/StarRating";
 
 export default function Page() {
   const [form, setForm] = useState<
@@ -27,7 +27,13 @@ export default function Page() {
 
   const onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (
     e,
-  ) => setForm({ ...form, [e.target.name]: e.target.value });
+  ) =>
+    setForm({
+      ...form,
+      [e.target.name]: isNaN(Number(e.target.value))
+        ? e.target.value
+        : Number(e.target.value),
+    });
 
   const onClick: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
@@ -72,7 +78,7 @@ export default function Page() {
             type="text"
             id="title"
             name="title"
-            value={form?.title}
+            value={form.title}
             onChange={onChange}
           />
         </div>
@@ -83,7 +89,7 @@ export default function Page() {
             type="date"
             id="watchedAt"
             name="watchedAt"
-            value={form?.watchedAt}
+            value={form.watchedAt}
             onChange={onChange}
           />
         </div>
@@ -94,14 +100,14 @@ export default function Page() {
             type="text"
             id="place"
             name="place"
-            value={form?.place}
+            value={form.place}
             onChange={onChange}
           />
         </div>
 
         <div>
           <label>rating</label>
-          <StarRating onChange={onChange} />
+          <StarRating onChange={onChange} checkedValue={form.rating} />
           <span>{form.rating}</span>
         </div>
 
@@ -111,7 +117,7 @@ export default function Page() {
             id="storyline"
             name="storyline"
             rows={5}
-            value={form?.storyline}
+            value={form.storyline}
             onChange={onChange}
             wrap="hard"
           />
@@ -123,7 +129,7 @@ export default function Page() {
             id="quotes"
             name="quotes"
             rows={5}
-            value={form?.quotes}
+            value={form.quotes}
             onChange={onChange}
             wrap="hard"
           />
@@ -135,7 +141,7 @@ export default function Page() {
             id="review"
             name="review"
             rows={5}
-            value={form?.review}
+            value={form.review}
             onChange={onChange}
             wrap="hard"
           />

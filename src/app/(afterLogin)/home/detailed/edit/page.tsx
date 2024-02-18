@@ -9,7 +9,7 @@ import {
   useState,
 } from "react";
 import { DetailedReview } from "@/model/DetailedReview";
-import StarRating from "../_component/StarRating";
+import StarRating from "../../_component/StarRating";
 
 export default function Page() {
   const [form, setForm] = useState<
@@ -51,7 +51,13 @@ export default function Page() {
 
   const onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (
     e,
-  ) => setForm({ ...form, [e.target.name]: e.target.value });
+  ) =>
+    setForm({
+      ...form,
+      [e.target.name]: isNaN(Number(e.target.value))
+        ? e.target.value
+        : Number(e.target.value),
+    });
 
   const onClick: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
