@@ -50,7 +50,7 @@ export default function Page() {
       form={form}
       onChange={onChange}
       onClick={onClick}
-      buttonText={"create"}
+      buttonText="create"
     />
   );
 }
