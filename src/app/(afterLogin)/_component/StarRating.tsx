@@ -1,29 +1,43 @@
 import { FaStar, FaStarHalf } from "react-icons/fa";
 import styles from "./starRating.module.scss";
-import { ChangeEventHandler } from "react";
 import cx from "classnames";
+import { ChangeEventHandler } from "react";
 
 interface StarInputProps {
+  name?: number | string;
   value: number;
   isHalf: boolean;
-  onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   isChecked: boolean;
+  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  isReadOnly: boolean;
 }
 
-function StarInput({ value, isHalf, onChange, isChecked }: StarInputProps) {
+function StarInput({
+  name,
+  value,
+  isHalf,
+  isChecked,
+  onChange,
+  isReadOnly,
+}: StarInputProps) {
   return (
     <>
       <input
         className={styles.input}
         type="radio"
         id={`star${value}`}
-        name="rating"
+        name={name ? `rating${name}` : "rating"}
         value={value}
         onChange={onChange}
         checked={isChecked}
+        readOnly={isReadOnly}
       />
       <label
-        className={cx(styles.label, isHalf && styles.half)}
+        className={cx(
+          styles.label,
+          isHalf && styles.half,
+          !isReadOnly && styles.edit,
+        )}
         htmlFor={`star${value}`}
       >
         {isHalf ? <FaStarHalf /> : <FaStar />}
@@ -33,11 +47,18 @@ function StarInput({ value, isHalf, onChange, isChecked }: StarInputProps) {
 }
 
 interface Props {
-  onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  name?: number | string;
+  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
   checkedValue: number;
+  isReadOnly: boolean;
 }
 
-export default function StarRating({ onChange, checkedValue }: Props) {
+export default function StarRating({
+  name,
+  onChange,
+  checkedValue,
+  isReadOnly,
+}: Props) {
   const rateArr = Array.from({ length: 10 }, (_, i) => i * -0.5 + 5);
 
   return (
@@ -46,9 +67,11 @@ export default function StarRating({ onChange, checkedValue }: Props) {
         <StarInput
           key={`starInput${v}`}
           value={v}
+          name={name}
           isHalf={i % 2 === 1}
           onChange={onChange}
-          isChecked={checkedValue === v}
+          isChecked={v === checkedValue}
+          isReadOnly={isReadOnly}
         />
       ))}
     </fieldset>

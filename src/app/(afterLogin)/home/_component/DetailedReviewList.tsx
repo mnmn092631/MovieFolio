@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import styles from "./detailedReviewList.module.scss";
 import { DetailedReview } from "@/model/DetailedReview";
 import { useEffect, useState } from "react";
-import ReadOnlyStarRating from "@/app/(afterLogin)/_component/ReadOnlyStarRating";
+import StarRating from "@/app/(afterLogin)/_component/StarRating";
 
 export default function DetailedReviewList() {
   const [reviews, setReviews] = useState<DetailedReview[]>();
@@ -40,9 +40,10 @@ export default function DetailedReviewList() {
           <h4 className={styles.movieNameRating}>
             {review.movie.titleKo}
             <span>
-              <ReadOnlyStarRating
-                name={review.id * Math.floor(Math.random() * 100000)}
-                rating={review.rating}
+              <StarRating
+                name={review.id}
+                checkedValue={review.rating}
+                isReadOnly={true}
               />
               <strong>{review.rating}</strong>
             </span>

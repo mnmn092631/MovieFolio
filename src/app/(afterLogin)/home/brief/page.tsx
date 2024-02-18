@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import ReadOnlyStarRating from "@/app/(afterLogin)/_component/ReadOnlyStarRating";
+import StarRating from "@/app/(afterLogin)/_component/StarRating";
 import styles from "./page.module.scss";
 import { BriefReview } from "@/model/BriefReview";
 import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
@@ -60,7 +60,7 @@ export default function Page() {
         <h1>{review.movie.titleKo}</h1>
         <div>
           <strong>rating</strong>
-          <ReadOnlyStarRating name={review.id} rating={review.rating} />
+          <StarRating checkedValue={review.rating} isReadOnly={true} />
           <span className={styles.rating}>{review.rating}</span>
         </div>
 

@@ -4,7 +4,7 @@ import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 import styles from "./briefReviewList.module.scss";
 import { BriefReview } from "@/model/BriefReview";
 import { useEffect, useState } from "react";
-import ReadOnlyStarRating from "@/app/(afterLogin)/_component/ReadOnlyStarRating";
+import StarRating from "@/app/(afterLogin)/_component/StarRating";
 import { useRouter } from "next/navigation";
 
 export default function BriefReviewList() {
@@ -38,7 +38,11 @@ export default function BriefReviewList() {
             <h3>
               {review.movie.titleKo}
               <span>
-                <ReadOnlyStarRating name={review.id} rating={review.rating} />
+                <StarRating
+                  name={review.id}
+                  checkedValue={review.rating}
+                  isReadOnly={true}
+                />
                 {review.rating}
               </span>
             </h3>

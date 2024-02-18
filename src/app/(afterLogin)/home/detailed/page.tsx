@@ -3,7 +3,7 @@
 import { DetailedReview } from "@/model/DetailedReview";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import ReadOnlyStarRating from "@/app/(afterLogin)/_component/ReadOnlyStarRating";
+import StarRating from "@/app/(afterLogin)/_component/StarRating";
 import styles from "./page.module.scss";
 
 export default function Page() {
@@ -72,7 +72,7 @@ export default function Page() {
 
         <div>
           <strong>rating</strong>
-          <ReadOnlyStarRating name={review.id} rating={review.rating} />
+          <StarRating checkedValue={review.rating} isReadOnly={true} />
           <span className={styles.rating}>{review.rating}</span>
         </div>
 

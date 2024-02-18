@@ -8,8 +8,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import StarRating from "../../_component/StarRating";
 import { BriefReview } from "@/model/BriefReview";
+import StarRating from "@/app/(afterLogin)/_component/StarRating";
 
 export default function Page() {
   const [form, setForm] = useState<
@@ -37,6 +37,8 @@ export default function Page() {
 
     fetchData();
   }, [id]);
+
+  if (!id) return null;
 
   const onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (
     e,
@@ -74,7 +76,11 @@ export default function Page() {
       <form className={styles.createForm}>
         <div>
           <label>rating</label>
-          <StarRating onChange={onChange} checkedValue={form.rating} />
+          <StarRating
+            onChange={onChange}
+            checkedValue={form.rating}
+            isReadOnly={false}
+          />
           <span>{form.rating}</span>
         </div>
 

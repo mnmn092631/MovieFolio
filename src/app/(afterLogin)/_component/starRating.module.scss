@@ -16,6 +16,10 @@
   font-size: 1rem;
   color: #DDDDDD;
   overflow: hidden;
+
+  &.edit {
+    cursor: pointer;
+  }
 }
 
 .half {
@@ -29,6 +33,12 @@
   }
 }
 
-.input:checked ~ .label {
+.input:checked ~ .label,
+.label.edit:hover,
+.label.edit:hover ~ .label.edit,
+.input:checked + .label.edit:hover,
+.input:checked ~ .label.edit:hover,
+.input:checked ~ .label.edit:hover ~ .label.edit,
+.label.edit:hover ~ .input:checked ~ .label.edit {
   color: #f86d6d;
 }
