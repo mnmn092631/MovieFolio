@@ -28,6 +28,13 @@ export async function GET(req: NextRequest) {
   try {
     const exData = await prisma.movie.findFirst({
       where: { id },
+      include: {
+        briefReviews: {
+          include: {
+            author: true,
+          },
+        },
+      },
     });
     if (exData)
       return new NextResponse(JSON.stringify(exData), { status: 200 });

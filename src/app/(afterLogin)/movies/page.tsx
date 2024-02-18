@@ -3,10 +3,10 @@
 import { Movie } from "@/model/Movie";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
 import convertDateFormatToDot from "@/app/(afterLogin)/_lib/convertDateFormatToDot";
 import styles from "./page.module.scss";
 import { IoIosArrowBack } from "react-icons/io";
+import BriefReviews from "@/app/(afterLogin)/movies/_component/BriefReviews";
 
 export default function Page() {
   const [movie, setMovie] = useState<Movie>();
@@ -81,33 +81,9 @@ export default function Page() {
           )}
         </div>
 
-        <div className={styles.briefReviews}>
-          {movie.briefReviews && (
-            <>
-              <h3>briefReviews</h3>
-              {movie.briefReviews?.map((review) => (
-                <div key={review.id}>
-                  <div>
-                    <h3>
-                      {review.movie.titleKo} <span>{review.rating}</span>
-                    </h3>
-                    <span>{review.createdAt}</span>
-                  </div>
-                  <div>
-                    <div>
-                      <FaThumbsUp />
-                      <p>{review.pros}</p>
-                    </div>
-                    <div>
-                      <FaThumbsDown />
-                      <p>{review.cons}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </>
-          )}
-        </div>
+        {movie.briefReviews && (
+          <BriefReviews briefReviews={movie.briefReviews} />
+        )}
 
         <div className={styles.createButtons}>
           <button onClick={onClickToCreateDetailedReview}>
