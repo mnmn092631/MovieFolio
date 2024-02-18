@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import styles from "./page.module.scss";
 import {
   ChangeEventHandler,
   MouseEventHandler,
@@ -9,7 +8,7 @@ import {
   useState,
 } from "react";
 import { BriefReview } from "@/model/BriefReview";
-import StarRating from "@/app/(afterLogin)/_component/StarRating";
+import BriefForm from "@/app/(afterLogin)/home/brief/_component/BriefForm";
 
 export default function Page() {
   const [form, setForm] = useState<
@@ -19,20 +18,17 @@ export default function Page() {
     pros: "",
     cons: "",
   });
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch(`/api/review/brief?id=${id}`).then((res) =>
-        res.json(),
-      );
-      setForm({
-        rating: data.rating,
-        pros: data.pros,
-        cons: data.cons,
-      });
+      const { rating, pros, cons } = await fetch(
+        `/api/review/brief?id=${id}`,
+      ).then((res) => res.json());
+      setForm({ rating, pros, cons });
     };
 
     fetchData();
@@ -53,16 +49,12 @@ export default function Page() {
   const onClick: MouseEventHandler<HTMLButtonElement> = async (e) => {
     e.preventDefault();
     if (!form.pros || !form.cons) return;
+    const { rating, pros, cons } = form;
 
     try {
       await fetch("/api/review/brief", {
         method: "PUT",
-        body: JSON.stringify({
-          id: Number(id),
-          rating: form.rating,
-          pros: form.pros,
-          cons: form.cons,
-        }),
+        body: JSON.stringify({ id: Number(id), rating, pros, cons }),
       }).then((data) => {
         if (data.ok) router.push("/home");
       });
@@ -72,44 +64,11 @@ export default function Page() {
   };
 
   return (
-    <div className={styles.container}>
-      <form className={styles.createForm}>
-        <div>
-          <label>rating</label>
-          <StarRating
-            onChange={onChange}
-            checkedValue={form.rating}
-            isReadOnly={false}
-          />
-          <span>{form.rating}</span>
-        </div>
-
-        <div>
-          <label htmlFor="pros">pros</label>
-          <textarea
-            id="pros"
-            name="pros"
-            rows={3}
-            value={form.pros}
-            onChange={onChange}
-            wrap="hard"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="cons">cons</label>
-          <textarea
-            id="cons"
-            name="cons"
-            rows={3}
-            value={form.cons}
-            onChange={onChange}
-            wrap="hard"
-          />
-        </div>
-
-        <button onClick={onClick}>edit</button>
-      </form>
-    </div>
+    <BriefForm
+      form={form}
+      onChange={onChange}
+      onClick={onClick}
+      buttonText="edit"
+    />
   );
 }

@@ -38,9 +38,7 @@ export default function Page() {
     try {
       await fetch("/api/review/brief", {
         method: "DELETE",
-        body: JSON.stringify({
-          id: Number(id),
-        }),
+        body: JSON.stringify({ id: Number(id) }),
       }).then((data) => {
         if (data.status === 200) router.push("/home");
       });
