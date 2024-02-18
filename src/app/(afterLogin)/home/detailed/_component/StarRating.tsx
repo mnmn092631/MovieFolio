@@ -7,9 +7,10 @@ interface StarInputProps {
   value: number;
   isHalf: boolean;
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  isChecked: boolean;
 }
 
-function StarInput({ value, isHalf, onChange }: StarInputProps) {
+function StarInput({ value, isHalf, onChange, isChecked }: StarInputProps) {
   return (
     <>
       <input
@@ -19,6 +20,7 @@ function StarInput({ value, isHalf, onChange }: StarInputProps) {
         name="rating"
         value={value}
         onChange={onChange}
+        checked={isChecked}
       />
       <label
         className={cx(styles.label, isHalf && styles.half)}
@@ -32,9 +34,10 @@ function StarInput({ value, isHalf, onChange }: StarInputProps) {
 
 interface Props {
   onChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  checkedValue?: number;
 }
 
-export default function StarRating({ onChange }: Props) {
+export default function StarRating({ onChange, checkedValue }: Props) {
   const rateArr = Array.from({ length: 10 }, (_, i) => i * -0.5 + 5);
   return (
     <fieldset className={styles.container}>
@@ -44,6 +47,7 @@ export default function StarRating({ onChange }: Props) {
           value={v}
           isHalf={i % 2 === 1}
           onChange={onChange}
+          isChecked={!!(checkedValue && checkedValue === v)}
         />
       ))}
     </fieldset>

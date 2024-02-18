@@ -124,7 +124,7 @@ export default function Page() {
 
         <div>
           <label>rating</label>
-          <StarRating onChange={onChange} />
+          <StarRating onChange={onChange} checkedValue={form.rating} />
           <span>{form.rating}</span>
         </div>
 

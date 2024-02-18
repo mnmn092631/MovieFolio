@@ -16,7 +16,6 @@ export default function SearchBar() {
   return (
     <div className={styles.container}>
       <input type="text" ref={keywordInputRef} />
-      {/*  todo: 엔터키로 검색 가능하게 설정 */}
       <button onClick={onClick}>search</button>
     </div>
   );
