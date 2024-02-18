@@ -1,19 +1,9 @@
 "use client";
 
 import { useSelectedLayoutSegment } from "next/navigation";
-import {
-  AiFillCalendar,
-  AiFillHome,
-  AiOutlineCalendar,
-  AiOutlineHome,
-} from "react-icons/ai";
+import { AiFillHome, AiOutlineHome } from "react-icons/ai";
 import Link from "next/link";
-import {
-  BiChalkboard,
-  BiSearch,
-  BiSearchAlt,
-  BiSolidChalkboard,
-} from "react-icons/bi";
+import { BiSearch, BiSearchAlt } from "react-icons/bi";
 import styles from "./navMenu.module.scss";
 
 export default function NavMenu() {
@@ -47,36 +37,6 @@ export default function NavMenu() {
             <>
               <BiSearch />
               <span>search</span>
-            </>
-          )}
-        </Link>
-      </li>
-      <li className={styles.navPill}>
-        <Link href="/release">
-          {segment === "release" ? (
-            <>
-              <AiFillCalendar />
-              <strong>release</strong>
-            </>
-          ) : (
-            <>
-              <AiOutlineCalendar />
-              <span>release</span>
-            </>
-          )}
-        </Link>
-      </li>
-      <li className={styles.navPill}>
-        <Link href="/board">
-          {segment === "board" ? (
-            <>
-              <BiSolidChalkboard />
-              <strong>board</strong>
-            </>
-          ) : (
-            <>
-              <BiChalkboard />
-              <span>board</span>
             </>
           )}
         </Link>
