@@ -15,7 +15,13 @@ export default function SearchBar() {
 
   return (
     <div className={styles.container}>
-      <input type="text" ref={keywordInputRef} />
+      <input
+        type="text"
+        ref={keywordInputRef}
+        onKeyDown={(e) => {
+          if (e.code === "Enter") onClick();
+        }}
+      />
       <button onClick={onClick}>search</button>
     </div>
   );
