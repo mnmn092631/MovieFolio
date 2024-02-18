@@ -1,0 +1,102 @@
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  margin: 30px 0 0 30px;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    color: #467047;
+  }
+
+  & > svg {
+    margin-top: 2px;
+  }
+}
+
+.container {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 30px;
+  padding: 50px;
+
+  & > div {
+    width: inherit;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 10px;
+    row-gap: 5px;
+
+    & > strong {
+      text-align: right;
+      text-transform: capitalize;
+      font-size: 1.2rem;
+      font-weight: 700;
+
+      &.iconText {
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+
+        & > svg {
+          margin-top: 1px;
+        }
+      }
+
+      &.pros > svg {
+        color: #2e97ff;
+      }
+
+      &.cons > svg {
+        color: #f86d6d;
+      }
+    }
+
+    & > span {
+      width: 100%;
+      padding: 15px 20px;
+      border-radius: 4px;
+      background-color: rgba(221, 221, 221, 0.4);
+      white-space: pre-line;
+
+      &.rating {
+        background-color: transparent;
+        width: initial;
+        padding: 0;
+      }
+    }
+
+    & > span {
+      margin-top: 1px;
+    }
+  }
+
+  & > .buttons {
+    display: flex;
+    justify-content: center;
+    column-gap: 20px;
+
+    & > button {
+      padding: 5px 10px;
+      border-radius: 4px;
+      background-color: #ffe990;
+      color: #467047;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 250ms ease-in-out;
+
+      &:hover {
+        background-color: #ffdb83;
+      }
+    }
+  }
+}

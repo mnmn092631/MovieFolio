@@ -5,9 +5,11 @@ import styles from "./briefReviewList.module.scss";
 import { BriefReview } from "@/model/BriefReview";
 import { useEffect, useState } from "react";
 import ReadOnlyStarRating from "@/app/(afterLogin)/_component/ReadOnlyStarRating";
+import { useRouter } from "next/navigation";
 
 export default function BriefReviewList() {
   const [reviews, setReviews] = useState<BriefReview[]>();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -20,12 +22,18 @@ export default function BriefReviewList() {
     fetchReviews();
   }, []);
 
+  const onClick = (id: number) => router.push(`/home/brief?id=${id}`);
+
   if (!reviews) return null;
 
   return (
     <div className={styles.container}>
       {reviews.map((review) => (
-        <div key={review.id} className={styles.listCard}>
+        <div
+          key={review.id}
+          className={styles.listCard}
+          onClick={() => onClick(review.id)}
+        >
           <div className={styles.title}>
             <h3>
               {review.movie.titleKo}

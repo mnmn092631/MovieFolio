@@ -5,19 +5,37 @@ import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function GET() {
+export async function GET(req?: NextRequest) {
   const session = await auth();
   // todo: status 확인
   if (!session?.user?.email) return new NextResponse("", { status: 400 });
 
-  const briefReviews = await prisma.briefReview.findMany({
-    where: { author: { email: session.user.email } },
-    include: {
-      movie: true,
-    },
-  });
+  const searchParams = req?.nextUrl.searchParams;
+  const id = searchParams?.get("id");
 
-  return new NextResponse(JSON.stringify(briefReviews), { status: 200 });
+  if (!id) {
+    const briefReviews = await prisma.briefReview.findMany({
+      where: { author: { email: session.user.email } },
+      include: {
+        movie: true,
+      },
+    });
+
+    return new NextResponse(JSON.stringify(briefReviews), { status: 200 });
+  }
+
+  if (!isNaN(Number(id))) {
+    const briefReview = await prisma.briefReview.findUnique({
+      where: { id: Number(id) },
+      include: {
+        movie: true,
+      },
+    });
+
+    return new NextResponse(JSON.stringify(briefReview), { status: 200 });
+  }
+
+  return new NextResponse("", { status: 404 });
 }
 
 export async function POST(req: NextRequest) {
