@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import styles from "./boxOffice.module.scss";
 import { MdArrowDropDown, MdArrowDropUp } from "react-icons/md";
 import cx from "classnames";
+import { useRouter } from "next/navigation";
 
 interface BoxOffice {
   rank: string;
@@ -37,6 +38,7 @@ export default function BoxOffice() {
   const [status, setStatus] = useState<number>();
   const [boxOffice, setBoxOffice] = useState<BoxOffice[]>();
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,6 +58,8 @@ export default function BoxOffice() {
 
     fetchData();
   }, []);
+
+  const onClick = (id: string) => router.push(`/movies?id=${id}`);
 
   if (loading) return <p className={styles.container}>...loading</p>;
   if (status === 404)
@@ -77,7 +81,11 @@ export default function BoxOffice() {
           </ul>
           <ul>
             {boxOffice.map((item) => (
-              <li key={item.movieCd} className={styles.boxOfficeListItem}>
+              <li
+                key={item.movieCd}
+                onClick={() => onClick(item.movieCd)}
+                className={styles.boxOfficeListItem}
+              >
                 <span className={styles.rank}>{item.rank}</span>
                 <span
                   className={cx(
