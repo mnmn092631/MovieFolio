@@ -1,60 +1,50 @@
+@import "/src/style/theme.scss";
+
 .container {
-  padding: 50px;
+	padding: 50px;
 }
 
 .createForm {
-  width: 85%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  row-gap: 15px;
+	@include flexbox(column, center, center);
+	row-gap: 15px;
 
-  & > div {
-    width: inherit;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    column-gap: 10px;
-    row-gap: 5px;
+	width: 85%;
+	margin: 0 auto;
 
-    & > label {
-      text-align: right;
-      text-transform: capitalize;
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
+	& > div {
+		@include flexbox($align: center, $wrap: wrap);
+		column-gap: 10px;
+		row-gap: 5px;
 
-    & > input,
-    textarea {
-      width: 100%;
-      padding: 5px;
-      border-radius: 4px;
-      background-color: rgba(221, 221, 221, 0.2);
+		width: inherit;
 
-      &:active, &:focus {
-        background-color: rgba(221, 221, 221, 0.4);
-      }
-    }
+		& > label {
+			text-align: right;
+			text-transform: capitalize;
+			font-size: 1.2rem;
+			font-weight: 700;
+		}
 
-    & > span {
-      margin-top: 1px;
-    }
-  }
+		& > input,
+		textarea {
+			width: 100%;
+			padding: 5px;
+			border-radius: 4px;
+			background-color: rgba(221, 221, 221, 0.2);
 
-  & > button {
-    padding: 5px 10px;
-    border-radius: 4px;
-    background-color: #ffe990;
-    color: #467047;
-    font-weight: 700;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 250ms ease-in-out;
+			&:active,
+			&:focus {
+				background-color: rgba(221, 221, 221, 0.4);
+			}
+		}
 
-    &:hover {
-      background-color: #ffdb83;
-    }
-  }
+		& > span {
+			margin-top: 1px;
+		}
+	}
+
+	& > button {
+		@extend %bgButton;
+		text-transform: uppercase;
+	}
 }

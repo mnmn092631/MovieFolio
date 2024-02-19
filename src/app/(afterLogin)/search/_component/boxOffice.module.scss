@@ -1,3 +1,5 @@
+@import "/src/style/theme.scss";
+
 .container {
 	padding: 50px 100px;
 }
@@ -19,8 +21,8 @@ div.container {
 }
 
 ul.boxOfficeListItem {
-	background-color: #467047;
-	color: #ffffff;
+	background-color: theme-color("primary", "dark");
+	color: theme-color("white");
 
 	& > li {
 		font-size: 1.2rem;
@@ -52,9 +54,8 @@ li.boxOfficeListItem {
 }
 
 .boxOfficeListItem {
+	@include flexbox($align: center);
 	width: 100%;
-	display: flex;
-	align-items: center;
 	padding: 15px 5px;
 	text-align: center;
 
@@ -81,9 +82,9 @@ li.boxOfficeListItem {
 }
 
 .red {
-	color: #f86d6d;
+	color: theme-color("red");
 }
 
 .blue {
-	color: #2e97ff;
+	color: theme-color("blue");
 }

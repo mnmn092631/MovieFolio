@@ -1,10 +1,11 @@
+@import "/src/style/theme.scss";
+
 .container {
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
+	@include flexbox($align: center, $wrap: wrap);
 	row-gap: 30px;
 	column-gap: 4%;
+
+	width: 100%;
 	padding: 50px 100px;
 }
 
@@ -24,9 +25,8 @@
 }
 
 .title {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	@include flexbox(row, space-between, center);
+
 	margin-bottom: 10px;
 
 	& > h3 > span {
@@ -48,13 +48,13 @@
 	& > .pros {
 		margin-bottom: 8px;
 		& > svg {
-			color: #2e97ff;
+			color: theme-color("blue");
 		}
 	}
 
 	& > .cons {
 		& > svg {
-			color: #f86d6d;
+			color: theme-color("red");
 		}
 	}
 }

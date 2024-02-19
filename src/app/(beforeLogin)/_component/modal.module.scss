@@ -1,25 +1,25 @@
+@import "/src/style/theme.scss";
+
 .container {
+	@include flexbox(row, center, center);
+
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	background-color: #00000066;
 
 	& > div {
 		position: relative;
 		max-width: 70dvw;
 		width: 500px;
-		background-color: #ffffff;
+		background-color: theme-color("white");
 		padding: 50px;
 		border-radius: 5px;
 
 		& > form {
-			display: flex;
-			flex-direction: column;
+			@include flexbox(column);
 			gap: 15px;
 			margin-top: 5px;
 		}
@@ -41,9 +41,9 @@
 }
 
 .inputDiv {
+	@include flexbox(column);
+
 	position: relative;
-	display: flex;
-	flex-direction: column;
 	height: 56px;
 
 	& > label {
@@ -53,10 +53,10 @@
 		width: 100%;
 		height: 60px;
 		padding: 10px 10px 0;
-		border: 1px solid #cfd9deff;
+		border: 1px solid theme-color("blue", "light");
 		border-radius: 4px;
 		font-size: 13px;
-		color: #536471ff;
+		color: theme-color("blue", "dark");
 		text-transform: uppercase;
 		cursor: text;
 	}
@@ -71,29 +71,29 @@
 
 .submitButton {
 	padding: 10px 0;
-	background-color: #ffdb83;
-	color: #467047;
+	background-color: theme-color("secondary", "dark");
+	color: theme-color("primary", "dark");
 	font-weight: 700;
 	border-radius: 4px;
 	text-transform: capitalize;
 	transition: background-color 250ms ease-in-out;
 
 	&:hover {
-		background-color: #ffe990;
+		background-color: theme-color("secondary");
 	}
 }
 
 .snsButtonWrapper {
-	display: flex;
-	flex-direction: column;
+	@include flexbox(column);
 	row-gap: 10px;
+
 	margin-bottom: 20px;
 
 	& > button {
-		width: 100%;
-		display: flex;
-		justify-content: center;
+		@include flexbox($justify: center);
 		column-gap: 5px;
+
+		width: 100%;
 		padding: 8px;
 		border: 1px solid #dddddd;
 		border-radius: 4px;

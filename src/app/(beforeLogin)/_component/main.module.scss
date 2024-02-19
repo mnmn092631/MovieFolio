@@ -1,3 +1,5 @@
+@import "/src/style/theme.scss";
+
 .container {
 	width: 100dvw;
 	height: 100dvh;
@@ -5,10 +7,9 @@
 	background-color: #ffffff;
 
 	& > div {
+		@include flexbox(column, center);
+
 		height: 100dvh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
 	}
 }
 
@@ -16,13 +17,13 @@
 	width: 60%;
 
 	& > .logo {
-		color: #8fbc8fff;
+		color: theme-color("primary", "light");
 		text-align: center;
 		font-size: 6.5rem;
 	}
 
 	& > .description {
-		color: #8fbc8fff;
+		color: theme-color("primary", "light");
 		text-align: center;
 		font-size: 2.5rem;
 	}
@@ -31,8 +32,8 @@
 .right {
 	width: 40%;
 	gap: 30px;
-	background-color: #8fbc8fff;
-	color: #ffffff;
+	background-color: theme-color("primary", "light");
+	color: theme-color("white");
 	text-align: center;
 }
 
@@ -41,12 +42,12 @@
 	padding: 8px 0;
 	margin: 0 auto;
 	border-radius: 15px;
-	background-color: #ffdb83;
-	color: #467047;
+	background-color: theme-color("secondary", "dark");
+	color: theme-color("primary", "dark");
 	font-weight: 700;
 	transition: background-color 250ms ease-in-out;
 
 	&:hover {
-		background-color: #ffe990;
+		background-color:  theme-color("secondary");
 	}
 }

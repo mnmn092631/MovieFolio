@@ -1,10 +1,11 @@
+@import "/src/style/theme.scss";
+
 .container {
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
+	@include flexbox($align: center, $wrap: wrap);
 	row-gap: 30px;
 	column-gap: 4%;
+
+	width: 100%;
 	padding: 50px 100px;
 }
 
@@ -24,13 +25,13 @@
 }
 
 .movieNameRating {
-	display: flex;
-	align-items: flex-end;
+	@include flexbox($align: flex-end);
 	column-gap: 5px;
 
 	& > span {
 		display: inline-flex;
 		column-gap: 3px;
+
 		& > strong {
 			margin-top: 1px;
 			font-weight: 400;
@@ -40,9 +41,7 @@
 }
 
 .title {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	@include flexbox(row, space-between, center);
 	margin-bottom: 10px;
 
 	& > h3 > span {

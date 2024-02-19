@@ -1,27 +1,30 @@
+@import "/src/style/theme.scss";
+
 .navPill {
-  & > a {
-    display: inline-flex;
-    align-items: center;
-    column-gap: 5px;
-    padding: 5px;
-    margin-bottom: 20px;
-    transition: color 250ms ease-in-out;
+	& > a {
+		display: inline-flex;
+		align-items: center;
+		column-gap: 5px;
+		padding: 5px;
+		margin-bottom: 20px;
+		transition: color 250ms ease-in-out;
 
-    svg {
-      font-size: 1.5rem;
-    }
+		svg {
+			font-size: 1.5rem;
+		}
 
-    strong, span {
-      font-size: 1.5rem;
-      text-transform: uppercase;
-    }
+		strong,
+		span {
+			font-size: 1.5rem;
+			text-transform: uppercase;
+		}
 
-    &:hover {
-      color: #467047;
-    }
-  }
+		&:hover {
+			color: theme-color($variant: "dark");
+		}
+	}
 
-  &:last-of-type > a {
-    margin-bottom: 0;
-  }
+	&:last-of-type > a {
+		margin-bottom: 0;
+	}
 }

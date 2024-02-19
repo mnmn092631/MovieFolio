@@ -1,36 +1,38 @@
+@import "/src/style/theme.scss";
+
 .container {
-  position: relative;
-  display: inline-flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  border: none;
-  transform: translateY(2px);
+	position: relative;
+	display: inline-flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	border: none;
+	transform: translateY(2px);
 }
 
 .input {
-  display: none;
+	display: none;
 }
 
 .label {
-  display: inline-block;
-  font-size: 1rem;
-  color: #DDDDDD;
-  overflow: hidden;
+	display: inline-block;
+	font-size: 1rem;
+	color: theme-color("gray");
+	overflow: hidden;
 
-  &.edit {
-    cursor: pointer;
-  }
+	&.edit {
+		cursor: pointer;
+	}
 }
 
 .half {
-  position: absolute;
-  width: 10%;
+	position: absolute;
+	width: 10%;
 
-  @for $i from 1 through 5 {
-    &:nth-of-type(#{$i * 2}) {
-      transform: translateX(-200% * ($i - 1) - 100%);
-    }
-  }
+	@for $i from 1 through 5 {
+		&:nth-of-type(#{$i * 2}) {
+			transform: translateX(-200% * ($i - 1) - 100%);
+		}
+	}
 }
 
 .input:checked ~ .label,
@@ -40,5 +42,5 @@
 .input:checked ~ .label.edit:hover,
 .input:checked ~ .label.edit:hover ~ .label.edit,
 .label.edit:hover ~ .input:checked ~ .label.edit {
-  color: #f86d6d;
+	color: theme-color("red");
 }

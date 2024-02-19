@@ -1,0 +1,78 @@
+$theme-colors: (
+	"primary": (
+		"light": #8fbc8f,
+		"base": #6a956a,
+		"dark": #467047,
+	),
+	"secondary": (
+		"light": #fff9e6,
+		"base": #ffe990,
+		"dark": #ffdb83,
+	),
+	"blue": (
+		"light": #cfd9de,
+		"base": #2e97ff,
+		"dark": #536471,
+	),
+	"red": (
+		"base": #f86d6d,
+	),
+	"white": (
+		"base": #ffffff,
+	),
+	"black": (
+		"opacity-0.05": #19191a0d,
+		"base": #000000,
+	),
+	"gray": (
+		"opacity-0.4": #dddddd66,
+		"base": #dddddd,
+	),
+);
+
+@function theme-color($key: "primary", $variant: "base") {
+	$map: map-get($theme-colors, $key);
+	@return map-get($map, $variant);
+}
+
+// extends
+%bgButton {
+	padding: 5px 10px;
+	border-radius: 4px;
+	background-color: theme-color("secondary");
+	color: theme-color("primary", "dark");
+	font-weight: 700;
+	transition: all 250ms ease-in-out;
+
+	&:hover {
+		background-color: theme-color("secondary", "dark");
+	}
+}
+
+%backButton {
+	display: inline-flex;
+	align-items: center;
+	margin: 30px 0 0 30px;
+	padding: 5px 10px;
+	font-size: 1.2rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	transition: all 250ms ease-in-out;
+
+	&:hover {
+		color: theme-color("primary", "dark");
+	}
+
+	& > svg {
+		margin-top: 2px;
+	}
+}
+
+// mixin
+@mixin flexbox($direction: row, $justify: flex-start, $align: flex-start, $wrap: nowrap) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: $justify;
+	align-items: $align;
+	flex-wrap: $wrap;
+}

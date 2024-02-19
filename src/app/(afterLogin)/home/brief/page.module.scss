@@ -1,102 +1,74 @@
+@import "/src/style/theme.scss";
+
 .backButton {
-  display: inline-flex;
-  align-items: center;
-  margin: 30px 0 0 30px;
-  padding: 5px 10px;
-  font-size: 1.2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: all 250ms ease-in-out;
-
-  &:hover {
-    color: #467047;
-  }
-
-  & > svg {
-    margin-top: 2px;
-  }
+	@extend %backButton;
 }
 
 .container {
-  width: 85%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  row-gap: 30px;
-  padding: 50px;
+	@include flexbox(column, center, center);
+	row-gap: 30px;
 
-  & > div {
-    width: inherit;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    column-gap: 10px;
-    row-gap: 5px;
+	width: 85%;
+	margin: 0 auto;
+	padding: 50px;
 
-    & > strong {
-      text-align: right;
-      text-transform: capitalize;
-      font-size: 1.2rem;
-      font-weight: 700;
+	& > div {
+		@include flexbox($align: center, $wrap: wrap);
+		column-gap: 10px;
+		row-gap: 5px;
 
-      &.iconText {
-        display: flex;
-        align-items: center;
-        column-gap: 5px;
+		width: inherit;
 
-        & > svg {
-          margin-top: 1px;
-        }
-      }
+		& > strong {
+			text-align: right;
+			text-transform: capitalize;
+			font-size: 1.2rem;
+			font-weight: 700;
 
-      &.pros > svg {
-        color: #2e97ff;
-      }
+			&.iconText {
+				@include flexbox($align: center);
+				column-gap: 5px;
 
-      &.cons > svg {
-        color: #f86d6d;
-      }
-    }
+				& > svg {
+					margin-top: 1px;
+				}
+			}
 
-    & > span {
-      width: 100%;
-      padding: 15px 20px;
-      border-radius: 4px;
-      background-color: rgba(221, 221, 221, 0.4);
-      white-space: pre-line;
+			&.pros > svg {
+				color: theme-color("blue");
+			}
 
-      &.rating {
-        background-color: transparent;
-        width: initial;
-        padding: 0;
-      }
-    }
+			&.cons > svg {
+				color: theme-color("red");
+			}
+		}
 
-    & > span {
-      margin-top: 1px;
-    }
-  }
+		& > span {
+			width: 100%;
+			padding: 15px 20px;
+			border-radius: 4px;
+			background-color: theme-color("gray", "opacity-0.4");
+			white-space: pre-line;
 
-  & > .buttons {
-    display: flex;
-    justify-content: center;
-    column-gap: 20px;
+			&.rating {
+				background-color: transparent;
+				width: initial;
+				padding: 0;
+			}
+		}
 
-    & > button {
-      padding: 5px 10px;
-      border-radius: 4px;
-      background-color: #ffe990;
-      color: #467047;
-      font-weight: 700;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 250ms ease-in-out;
+		& > span {
+			margin-top: 1px;
+		}
+	}
 
-      &:hover {
-        background-color: #ffdb83;
-      }
-    }
-  }
+	& > .buttons {
+		@include flexbox($justify: center);
+		column-gap: 20px;
+
+		& > button {
+			@extend %bgButton;
+			text-transform: uppercase;
+		}
+	}
 }

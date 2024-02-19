@@ -1,49 +1,50 @@
+@import "/src/style/theme.scss";
+
 .briefReviews {
-  max-height: 60dvh;
-  margin-bottom: 20px;
-  padding: 20px;
-  overflow-y: auto;
+	max-height: 60dvh;
+	margin-bottom: 20px;
+	padding: 20px;
+	overflow-y: auto;
 
-  & > h3 {
-    text-align: center;
-    text-transform: capitalize;
-    margin-bottom: 10px;
-  }
+	& > h3 {
+		margin-bottom: 10px;
+		text-align: center;
+		text-transform: capitalize;
+	}
 
-  & > div {
-    padding: 20px;
-    background-color: rgba(221, 221, 221, 0.2);
-    box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    transition: all 200ms ease-in-out;
+	& > div {
+		padding: 20px;
+		background-color: rgba(221, 221, 221, 0.2);
+		box-shadow: 1px 4px 8px 1px rgba(0, 0, 0, 0.1);
+		border-radius: 8px;
+		transition: all 200ms ease-in-out;
 
-    &:hover {
-      background-color: rgba(221, 221, 221, 0.3);
-      box-shadow: 1px 8px 16px 1px rgba(0, 0, 0, 0.1);
-    }
+		&:hover {
+			background-color: rgba(221, 221, 221, 0.3);
+			box-shadow: 1px 8px 16px 1px rgba(0, 0, 0, 0.1);
+		}
 
-    & > .briefTitle {
-      display: flex;
-      justify-content:space-between;
-      margin-bottom: 10px;
-    }
+		& > .briefTitle {
+			@include flexbox($justify: space-between);
 
-    & > .briefContent {
-      display: flex;
-      flex-direction: column;
-      row-gap: 5px;
+			margin-bottom: 10px;
+		}
 
-      .pros > svg {
-        color: #2e97ff;
-      }
+		& > .briefContent {
+			@include flexbox(column);
+			row-gap: 5px;
 
-      .cons > svg {
-        color: #f86d6d;
-      }
-    }
-  }
+			.pros > svg {
+				color: #2e97ff;
+			}
 
-  & > div + div {
-    margin-top: 10px;
-  }
+			.cons > svg {
+				color: #f86d6d;
+			}
+		}
+	}
+
+	& > div + div {
+		margin-top: 10px;
+	}
 }
