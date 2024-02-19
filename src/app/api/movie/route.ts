@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
+import prisma from "@/prisma";
 
 interface MovieInfoAPIData {
   movieInfoResult: {
@@ -16,8 +16,6 @@ interface MovieInfoAPIData {
     };
   };
 }
-
-const prisma = new PrismaClient();
 
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;

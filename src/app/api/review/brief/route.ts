@@ -1,9 +1,7 @@
 import { BriefReview } from "@/model/BriefReview";
 import { auth } from "@/auth";
-import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
-
-const prisma = new PrismaClient();
+import prisma from "@/prisma";
 
 export async function GET(req?: NextRequest) {
   const session = await auth();
