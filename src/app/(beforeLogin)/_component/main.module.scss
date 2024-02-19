@@ -4,10 +4,10 @@
 	width: 100dvw;
 	height: 100dvh;
 	display: flex;
-	background-color: #ffffff;
+	background-color: theme-color("white");
 
 	& > div {
-		@include flexbox(column, center);
+		@include flexbox(column, center, center);
 
 		height: 100dvh;
 	}
@@ -26,6 +26,7 @@
 		color: theme-color("primary", "light");
 		text-align: center;
 		font-size: 2.5rem;
+		text-transform: capitalize;
 	}
 }
 
@@ -35,6 +36,7 @@
 	background-color: theme-color("primary", "light");
 	color: theme-color("white");
 	text-align: center;
+	text-transform: capitalize;
 }
 
 .button {
@@ -48,6 +50,6 @@
 	transition: background-color 250ms ease-in-out;
 
 	&:hover {
-		background-color:  theme-color("secondary");
+		background-color: theme-color("secondary");
 	}
 }
