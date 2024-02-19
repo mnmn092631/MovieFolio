@@ -33,14 +33,6 @@
 		& > .briefContent {
 			@include flexbox(column);
 			row-gap: 5px;
-
-			.pros > svg {
-				color: #2e97ff;
-			}
-
-			.cons > svg {
-				color: #f86d6d;
-			}
 		}
 	}
 

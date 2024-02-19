@@ -32,18 +32,6 @@
 					margin-top: 1px;
 				}
 			}
-
-			&.pros {
-				& > svg {
-					color: theme-color("blue");
-				}
-			}
-
-			&.cons {
-				& > svg {
-					color: theme-color("red");
-				}
-			}
 		}
 
 		& > input,

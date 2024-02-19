@@ -44,14 +44,5 @@
 
 	& > .pros {
 		margin-bottom: 8px;
-		& > svg {
-			color: theme-color("blue");
-		}
-	}
-
-	& > .cons {
-		& > svg {
-			color: theme-color("red");
-		}
 	}
 }
