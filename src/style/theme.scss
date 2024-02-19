@@ -76,3 +76,10 @@ $theme-colors: (
 	align-items: $align;
 	flex-wrap: $wrap;
 }
+
+@mixin text-truncate($line: 3) {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: $line;
+	overflow: hidden;
+}

@@ -39,10 +39,7 @@
 	padding: 0 5px;
 
 	& > div > p {
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 3;
-		overflow: hidden;
+		@include text-truncate();
 	}
 
 	& > .pros {
