@@ -1,22 +1,37 @@
 "use client";
 
-import { ChangeEventHandler, useState } from "react";
+import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import styles from "./modal.module.scss";
 import { RxCross2 } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 
 export default function SignupModal() {
   const [form, setForm] = useState({
-    id: "",
+    name: "",
+    email: "",
     password: "",
-    nickname: "",
   });
   const router = useRouter();
   const onClickClose = () => router.back();
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setForm({ ...form, [e.target.id]: e.target.value });
 
-  const onSubmit = () => {};
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { name, email, password } = form;
+      const res = await fetch("/api/signup", {
+        method: "POST",
+        body: JSON.stringify({ name, email, password }),
+        credentials: "include",
+      });
+
+      if (res.ok) router.push("/login");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -24,20 +39,25 @@ export default function SignupModal() {
         <button className={styles.closeButton} onClick={onClickClose}>
           <RxCross2 />
         </button>
-        <form>
+        <form onSubmit={onSubmit}>
           <div className={styles.inputDiv}>
-            <label htmlFor="nickname">nickname</label>
+            <label htmlFor="name">name</label>
             <input
               type="text"
-              id="nickname"
-              value={form.nickname}
+              id="name"
+              value={form.name}
               onChange={onChange}
             />
           </div>
 
           <div className={styles.inputDiv}>
-            <label htmlFor="id">id</label>
-            <input type="text" id="id" value={form.id} onChange={onChange} />
+            <label htmlFor="id">email</label>
+            <input
+              type="email"
+              id="email"
+              value={form.email}
+              onChange={onChange}
+            />
           </div>
 
           <div className={styles.inputDiv}>
@@ -52,8 +72,7 @@ export default function SignupModal() {
 
           <button
             className={styles.submitButton}
-            onSubmit={onSubmit}
-            disabled={!form.id || !form.nickname || !form.password}
+            disabled={!form.email || !form.name || !form.password}
           >
             signup
           </button>

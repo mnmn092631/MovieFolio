@@ -1,6 +1,11 @@
 "use client";
 
-import { ChangeEventHandler, useEffect, useState } from "react";
+import {
+  ChangeEventHandler,
+  FormEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import styles from "./modal.module.scss";
 import { RxCross2 } from "react-icons/rx";
 import { useRouter } from "next/navigation";
@@ -8,10 +13,26 @@ import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 
 export default function LoginModal() {
-  const [form, setForm] = useState({ id: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "" });
   const router = useRouter();
-  const { data, status } = useSession();
-  const onSubmit = () => {};
+  const { status } = useSession();
+
+  const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { email, password } = form;
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+      });
+
+      if (res?.ok) router.push("/home");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const onClickClose = () => router.back();
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setForm({ ...form, [e.target.id]: e.target.value });
@@ -46,10 +67,15 @@ export default function LoginModal() {
             <span>Login with Google</span>
           </button>
         </div>
-        <form>
+        <form onSubmit={onSubmit}>
           <div className={styles.inputDiv}>
-            <label htmlFor="id">id</label>
-            <input type="text" id="id" value={form.id} onChange={onChange} />
+            <label htmlFor="email">email</label>
+            <input
+              type="email"
+              id="email"
+              value={form.email}
+              onChange={onChange}
+            />
           </div>
           <div className={styles.inputDiv}>
             <label htmlFor="password">password</label>
@@ -62,7 +88,7 @@ export default function LoginModal() {
           </div>
           <button
             className={styles.submitButton}
-            disabled={!form.id || !form.password}
+            disabled={!form.email || !form.password}
           >
             login
           </button>
