@@ -1,12 +1,14 @@
-import styles from "./briefReviews.module.scss";
+import { BriefReview } from "@/model/BriefReview";
 import StarRating from "@/app/(afterLogin)/_component/StarRating";
 import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
-import { BriefReview } from "@/model/BriefReview";
+import styles from "./briefReviews.module.scss";
 
 interface Props {
 	briefReviews: BriefReview[];
 }
+
 export default function BriefReviews({ briefReviews }: Props) {
+	if (briefReviews.length === 0) return null;
 	return (
 		<div className={styles.briefReviews}>
 			<h3>brief reviews</h3>
