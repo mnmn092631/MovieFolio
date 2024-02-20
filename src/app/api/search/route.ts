@@ -30,7 +30,7 @@ export async function GET(req: NextRequest) {
 	const perPage = 10;
 	const pageNo = Number(searchParams?.get("pageNo")) ?? 1;
 
-	if (!keyword) return new NextResponse("", { status: 400 });
+	if (!keyword) return NextResponse.json({ message: "Bad Request: Missing keyword parameter" }, { status: 400 });
 
 	try {
 		const findMovie: MovieListAPIData = await fetch(
@@ -38,11 +38,12 @@ export async function GET(req: NextRequest) {
 		).then((data) => data.json());
 
 		const totalCount = findMovie.movieListResult.totCnt;
-		if (totalCount === 0) return new NextResponse("", { status: 404 });
+		if (totalCount === 0)
+			return NextResponse.json({ message: "No movies found for the specified keyword" }, { status: 404 });
 
 		const totalPage = Math.ceil(totalCount / perPage);
 		const mappedDataPromises = findMovie.movieListResult.movieList.map(async (item) => {
-			const exData = await prisma.movie.findFirst({
+			const exData = await prisma.movie.findUnique({
 				where: {
 					id: item.movieCd,
 				},
@@ -95,11 +96,9 @@ export async function GET(req: NextRequest) {
 			},
 		});
 
-		return new NextResponse(JSON.stringify({ isEnd: totalPage === pageNo, list: keywordMovies }), { status: 200 });
+		return NextResponse.json({ isEnd: totalPage === pageNo, list: keywordMovies }, { status: 200 });
 	} catch (err) {
-		console.log(err);
-		return new NextResponse("", { status: 500 });
-	} finally {
-		await prisma.$disconnect();
+		console.error(err);
+		return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
 	}
 }

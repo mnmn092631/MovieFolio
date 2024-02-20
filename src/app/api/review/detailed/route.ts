@@ -5,8 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req?: NextRequest) {
 	const session = await auth();
-	// todo: status 확인
-	if (!session?.user?.email) return new NextResponse("", { status: 400 });
+	if (!session?.user?.email) return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
 
 	const searchParams = req?.nextUrl.searchParams;
 	const id = searchParams?.get("id");
@@ -24,7 +23,7 @@ export async function GET(req?: NextRequest) {
 
 		const totalCount = detailedReviews.length;
 		const totalPage = Math.ceil(totalCount / perPage);
-		if (pageNo > totalPage) return new NextResponse("", { status: 400 });
+		if (pageNo > totalPage) return NextResponse.json({ message: "Invalid page number" }, { status: 400 });
 
 		let pagination = detailedReviews;
 		if (totalCount > perPage) {
@@ -32,7 +31,7 @@ export async function GET(req?: NextRequest) {
 			else pagination = detailedReviews.slice(perPage * (pageNo - 1), perPage * pageNo);
 		}
 
-		return new NextResponse(JSON.stringify({ isEnd: totalPage === pageNo, list: pagination }), { status: 200 });
+		return NextResponse.json({ isEnd: totalPage === pageNo, list: pagination }, { status: 200 });
 	}
 
 	if (!isNaN(Number(id))) {
@@ -43,22 +42,22 @@ export async function GET(req?: NextRequest) {
 			},
 		});
 
-		return new NextResponse(JSON.stringify(detailedReview), { status: 200 });
+		return NextResponse.json(detailedReview, { status: 200 });
 	}
 
-	return new NextResponse("", { status: 404 });
+	return NextResponse.json({ message: "Detailed review not found" }, { status: 404 });
 }
 
 export async function POST(req: NextRequest) {
 	const session = await auth();
-	// todo: status 확인
-	if (!session?.user?.email) return new NextResponse("", { status: 400 });
+	if (!session?.user?.email) return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+
 	const user = await prisma.user.findUnique({
 		where: {
 			email: session.user.email,
 		},
 	});
-	if (!user) return new NextResponse("", { status: 400 });
+	if (!user) return NextResponse.json({ message: "User not found" }, { status: 400 });
 
 	const {
 		title,
@@ -85,10 +84,10 @@ export async function POST(req: NextRequest) {
 				movieId,
 			},
 		});
-		return new NextResponse("", { status: 200 });
+		return NextResponse.json({}, { status: 200 });
 	} catch (err) {
-		console.log(err);
-		return new NextResponse("", { status: 500 });
+		console.error(err);
+		return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
 	}
 }
 
@@ -117,10 +116,10 @@ export async function PUT(req: NextRequest) {
 				review,
 			},
 		});
-		return new NextResponse("", { status: 200 });
+		return NextResponse.json({}, { status: 200 });
 	} catch (err) {
-		console.log(err);
-		return new NextResponse("", { status: 500 });
+		console.error(err);
+		return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
 	}
 }
 
@@ -131,9 +130,9 @@ export async function DELETE(req: NextRequest) {
 		await prisma.detailedReview.delete({
 			where: { id },
 		});
-		return new NextResponse("", { status: 200 });
+		return NextResponse.json({}, { status: 200 });
 	} catch (err) {
-		console.log(err);
-		return new NextResponse("", { status: 500 });
+		console.error(err);
+		return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
 	}
 }
