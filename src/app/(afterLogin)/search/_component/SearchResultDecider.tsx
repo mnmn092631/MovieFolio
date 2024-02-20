@@ -1,11 +1,11 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import BoxOffice from "@/app/(afterLogin)/search/_component/BoxOffice";
 import { useCallback, useEffect, useRef, useState } from "react";
-import styles from "./searchResultDecider.module.scss";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Movie } from "@/model/Movie";
+import BoxOffice from "@/app/(afterLogin)/search/_component/BoxOffice";
 import convertDateFormatToDot from "@/app/(afterLogin)/_lib/convertDateFormatToDot";
+import styles from "./searchResultDecider.module.scss";
 
 export default function SearchResultDecider() {
 	const obsRef = useRef<HTMLDivElement>(null);
