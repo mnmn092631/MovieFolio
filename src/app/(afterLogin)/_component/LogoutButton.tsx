@@ -3,30 +3,31 @@
 import styles from "./logoutButton.module.scss";
 import { FaUserCircle } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 export default function LogoutButton() {
-  const router = useRouter();
+	const router = useRouter();
 
-  const me = {
-    username: "username",
-    id: "guestId",
-  };
+	const session = useSession();
+	const me = session.data;
 
-  const onLogout = () => {
-    signOut({ redirect: false }).then(() => {
-      router.replace("/");
-    });
-  };
+	const onLogout = () => {
+		signOut({ redirect: false }).then(() => router.replace("/"));
+	};
 
-  return (
-    <>
-      {me?.username && (
-        <button className={styles.logoutButton} onClick={onLogout}>
-          <FaUserCircle />
-          <span>{me.username}</span>
-        </button>
-      )}
-    </>
-  );
+	if (!me?.user) return null;
+
+	return (
+		<>
+			{me.user?.name && (
+				<button className={styles.logoutButton} onClick={onLogout}>
+					<FaUserCircle />
+					<p className={styles.userInfo}>
+						<span>{me.user?.name}</span>
+						<span>{me.user?.email}</span>
+					</p>
+				</button>
+			)}
+		</>
+	);
 }

@@ -14,6 +14,11 @@
 		font-size: 2.3rem;
 	}
 
+	& > .userInfo {
+		@include flexbox(column, center);
+		row-gap: 3px;
+	}
+
 	&:hover {
 		color: theme-color($variant: "dark");
 	}
