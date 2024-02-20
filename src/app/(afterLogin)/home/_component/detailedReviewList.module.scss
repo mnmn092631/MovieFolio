@@ -41,7 +41,8 @@
 }
 
 .title {
-	@include flexbox(row, space-between, center);
+	@include flexbox(row, space-between, center, wrap);
+	row-gap: 3px;
 	margin-bottom: 10px;
 
 	& > h3 > span {

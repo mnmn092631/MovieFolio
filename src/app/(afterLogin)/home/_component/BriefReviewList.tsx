@@ -59,7 +59,7 @@ export default function BriefReviewList() {
   const onClick = (id: number) => router.push(`/home/brief?id=${id}`);
 
   // if (loading) return <p className={styles.container}>...loading</p>;
-  if (!reviews.length) return <p className={styles.container}>No data.</p>;
+  if (!reviews.length) return null;
   return (
     <div className={styles.container}>
       {reviews.map((review) => (
