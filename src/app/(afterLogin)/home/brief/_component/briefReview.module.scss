@@ -1,9 +1,5 @@
 @import "/src/style/theme.scss";
 
-.backButton {
-	@extend %backButton;
-}
-
 .container {
 	@include flexbox(column, center, center);
 	row-gap: 30px;

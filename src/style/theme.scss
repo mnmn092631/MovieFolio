@@ -49,25 +49,6 @@ $theme-colors: (
 	}
 }
 
-%backButton {
-	display: inline-flex;
-	align-items: center;
-	margin: 30px 0 0 30px;
-	padding: 5px 10px;
-	font-size: 1.2rem;
-	font-weight: 700;
-	text-transform: uppercase;
-	transition: all 250ms ease-in-out;
-
-	&:hover {
-		color: theme-color("primary", "dark");
-	}
-
-	& > svg {
-		margin-top: 2px;
-	}
-}
-
 // mixin
 @mixin flexbox($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
 	display: flex;
