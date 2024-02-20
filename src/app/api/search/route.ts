@@ -3,6 +3,7 @@ import prisma from "@/prisma";
 
 interface MovieListAPIData {
 	movieListResult: {
+		totCnt: number;
 		movieList: {
 			movieCd: string;
 			movieNm: string;
@@ -26,6 +27,7 @@ interface MovieInfoAPIData {
 export async function GET(req: NextRequest) {
 	const searchParams = req.nextUrl.searchParams;
 	const keyword = searchParams.get("keyword");
+	const perPage = 10;
 	const pageNo = Number(searchParams?.get("pageNo")) ?? 1;
 
 	if (!keyword) return new NextResponse("", { status: 400 });
@@ -35,8 +37,10 @@ export async function GET(req: NextRequest) {
 			`${process.env.MOVIE_LIST_BY_TITLE_API}${keyword}&curPage=${pageNo}`
 		).then((data) => data.json());
 
-		if (findMovie.movieListResult.movieList.length === 0) return new NextResponse("", { status: 404 });
+		const totalCount = findMovie.movieListResult.totCnt;
+		if (totalCount === 0) return new NextResponse("", { status: 404 });
 
+		const totalPage = Math.ceil(totalCount / perPage);
 		const mappedDataPromises = findMovie.movieListResult.movieList.map(async (item) => {
 			const exData = await prisma.movie.findFirst({
 				where: {
@@ -91,7 +95,7 @@ export async function GET(req: NextRequest) {
 			},
 		});
 
-		return new NextResponse(JSON.stringify(keywordMovies), { status: 200 });
+		return new NextResponse(JSON.stringify({ isEnd: totalPage === pageNo, list: keywordMovies }), { status: 200 });
 	} catch (err) {
 		console.log(err);
 		return new NextResponse("", { status: 500 });

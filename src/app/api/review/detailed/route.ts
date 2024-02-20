@@ -32,7 +32,7 @@ export async function GET(req?: NextRequest) {
 			else pagination = detailedReviews.slice(perPage * (pageNo - 1), perPage * pageNo);
 		}
 
-		return new NextResponse(JSON.stringify(pagination), { status: 200 });
+		return new NextResponse(JSON.stringify({ isEnd: totalPage === pageNo, list: pagination }), { status: 200 });
 	}
 
 	if (!isNaN(Number(id))) {
