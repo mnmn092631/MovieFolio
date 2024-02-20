@@ -1,23 +1,30 @@
 "use client";
 
-import { useRef } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./searchBar.module.scss";
 
 export default function SearchBar() {
   const router = useRouter();
-  const keywordInputRef = useRef<HTMLInputElement>(null);
+  const searchParams = useSearchParams();
+  const keywordParam = searchParams.get("keyword");
+  const [keyword, setKeyword] = useState<string>(keywordParam ?? "");
 
   const onClick = () => {
-    if (!keywordInputRef.current) return;
-    router.replace(`/search?keyword=${keywordInputRef.current.value}`);
+    if (!keyword) return;
+    router.replace(`/search?keyword=${keyword}`);
   };
+
+  useEffect(() => {
+    if (!keywordParam) setKeyword("");
+  }, [keywordParam]);
 
   return (
     <div className={styles.container}>
       <input
         type="text"
-        ref={keywordInputRef}
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
         onKeyDown={(e) => {
           if (e.code === "Enter") onClick();
         }}
