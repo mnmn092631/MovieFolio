@@ -1,9 +1,9 @@
 "use client";
 
-import cx from "classnames";
-import styles from "./tab.module.scss";
 import { useContext } from "react";
+import cx from "classnames";
 import { TabContext } from "./TabProvider";
+import styles from "./tab.module.scss";
 
 export default function Tab() {
 	const { tab, setTab } = useContext(TabContext);

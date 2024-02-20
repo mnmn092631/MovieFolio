@@ -1,12 +1,13 @@
 "use client";
 
-import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
-import styles from "./briefReviewList.module.scss";
-import { BriefReview } from "@/model/BriefReview";
 import { useCallback, useEffect, useRef, useState } from "react";
-import StarRating from "@/app/(afterLogin)/_component/StarRating";
 import { useRouter } from "next/navigation";
 import cx from "classnames";
+import { BriefReview } from "@/model/BriefReview";
+import StarRating from "@/app/(afterLogin)/_component/StarRating";
+import convertTimestampToSimple from "@/app/(afterLogin)/_lib/convertTimestampToSimple";
+import { FaThumbsDown, FaThumbsUp } from "react-icons/fa";
+import styles from "./briefReviewList.module.scss";
 
 export default function BriefReviewList() {
 	const obsRef = useRef<HTMLDivElement>(null);
@@ -24,6 +25,11 @@ export default function BriefReviewList() {
 		return () => observer.disconnect();
 	}, []);
 
+	useEffect(() => {
+		getBriefReviews();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [page]);
+
 	const obsHandler = (entries: IntersectionObserverEntry[]) => {
 		const target = entries[0];
 		if (!endRef.current && target.isIntersecting && preventRef.current) {
@@ -36,7 +42,7 @@ export default function BriefReviewList() {
 		setLoading(true);
 		try {
 			const res = await fetch(`/api/review/brief?pageNo=${page}`);
-			if (res.status === 200) {
+			if (res.ok) {
 				const data = await res.json();
 				if (data.isEnd) endRef.current = true;
 				setReviews((prev) => [...prev, ...data.list]);
@@ -46,11 +52,6 @@ export default function BriefReviewList() {
 		} finally {
 			setLoading(false);
 		}
-	}, [page]);
-
-	useEffect(() => {
-		getBriefReviews();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [page]);
 
 	const onClick = (id: number) => router.push(`/home/brief?id=${id}`);
@@ -69,7 +70,7 @@ export default function BriefReviewList() {
 								{review.rating}
 							</span>
 						</h3>
-						<span>{review.createdAt.slice(0, 19).replace("T", " ")}</span>
+						<span>{convertTimestampToSimple(review.createdAt)}</span>
 					</div>
 					<div className={styles.content}>
 						<div className={cx("pros", styles.pros)}>

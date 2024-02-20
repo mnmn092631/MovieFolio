@@ -1,10 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import styles from "./detailedReviewList.module.scss";
-import { DetailedReview } from "@/model/DetailedReview";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { DetailedReview } from "@/model/DetailedReview";
 import StarRating from "@/app/(afterLogin)/_component/StarRating";
+import convertTimestampToSimple from "@/app/(afterLogin)/_lib/convertTimestampToSimple";
+import styles from "./detailedReviewList.module.scss";
 
 export default function DetailedReviewList() {
 	const obsRef = useRef<HTMLDivElement>(null);
@@ -22,6 +23,11 @@ export default function DetailedReviewList() {
 		return () => observer.disconnect();
 	}, []);
 
+	useEffect(() => {
+		getDetailedReviews();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [page]);
+
 	const obsHandler = (entries: IntersectionObserverEntry[]) => {
 		const target = entries[0];
 		if (!endRef.current && target.isIntersecting && preventRef.current) {
@@ -34,7 +40,7 @@ export default function DetailedReviewList() {
 		setLoading(true);
 		try {
 			const res = await fetch(`/api/review/detailed?pageNo=${page}`);
-			if (res.status === 200) {
+			if (res.ok) {
 				const data = await res.json();
 				if (data.isEnd) endRef.current = true;
 				setReviews((prev) => [...prev, ...data.list]);
@@ -44,11 +50,6 @@ export default function DetailedReviewList() {
 		} finally {
 			setLoading(false);
 		}
-	}, [page]);
-
-	useEffect(() => {
-		getDetailedReviews();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [page]);
 
 	const onClick = (id: number) => router.push(`/home/detailed?id=${id}`);
@@ -68,7 +69,7 @@ export default function DetailedReviewList() {
 					</h4>
 					<div className={styles.title}>
 						<h2>{review.title}</h2>
-						<span>{review.createdAt.slice(0, 19).replace("T", " ")}</span>
+						<span>{convertTimestampToSimple(review.createdAt)}</span>
 					</div>
 					<div className={styles.content}>
 						<p>
