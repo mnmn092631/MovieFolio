@@ -1,13 +1,12 @@
 "use client";
 
-import styles from "./logoutButton.module.scss";
-import { FaUserCircle } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import { FaUserCircle } from "react-icons/fa";
+import styles from "./logoutButton.module.scss";
 
 export default function LogoutButton() {
 	const router = useRouter();
-
 	const session = useSession();
 	const me = session.data;
 
@@ -16,7 +15,6 @@ export default function LogoutButton() {
 	};
 
 	if (!me?.user) return null;
-
 	return (
 		<>
 			{me.user?.name && (
