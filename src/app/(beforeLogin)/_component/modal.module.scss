@@ -36,7 +36,7 @@
 	transition: background-color 250ms ease-in-out;
 
 	&:hover {
-		background-color: #19191a0d;
+		background-color: theme-color("black", "opacity-0.05");
 	}
 }
 
@@ -95,14 +95,14 @@
 
 		width: 100%;
 		padding: 8px;
-		border: 1px solid #dddddd;
+		border: 1px solid theme-color("gray");
 		border-radius: 4px;
-		color: #536471ff;
-		background-color: #ffffff;
+		color: theme-color("blue", "dark");
+		background-color: theme-color("white");
 		transition: all 250ms ease-in-out;
 
 		&:hover {
-			background-color: rgba(221, 221, 221, 0.4);
+			background-color: theme-color("gray", "opacity-0.4");
 		}
 	}
 }
