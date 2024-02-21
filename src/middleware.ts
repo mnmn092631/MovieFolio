@@ -7,5 +7,5 @@ export async function middleware() {
 }
 
 export const config = {
-  matcher: ["/home", "/search", "/release", "/board"],
+  matcher: ["/home", "/search"],
 };
