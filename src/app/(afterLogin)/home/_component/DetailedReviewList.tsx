@@ -34,13 +34,15 @@ export default function DetailedReviewList() {
     setLoading(true);
     try {
       const res = await fetch(`/api/review/detailed?pageNo=${page}`);
-      if (res.ok) {
-        const data = await res.json();
+      const data = await res.json();
+
+      if (!res.ok) alert(data.error);
+      else {
         if (data.isEnd) setIsEnd(true);
         setReviews((prev) => prev.concat(data.list));
       }
     } catch (err) {
-      console.log(err);
+      console.error(err);
     } finally {
       setLoading(false);
     }

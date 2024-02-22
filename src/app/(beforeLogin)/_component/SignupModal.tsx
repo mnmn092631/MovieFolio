@@ -23,8 +23,10 @@ export default function SignupModal() {
         body: JSON.stringify({ name, email, password }),
         credentials: "include",
       });
+      const data = await res.json();
 
-      if (res.ok) router.push("/login");
+      if (!res.ok) alert(data.error);
+      else router.push("/login");
     } catch (err) {
       console.log(err);
     }

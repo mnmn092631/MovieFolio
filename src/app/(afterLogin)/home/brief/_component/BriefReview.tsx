@@ -16,10 +16,15 @@ export default function BriefReview() {
 
   useEffect(() => {
     const fetchReview = async () => {
-      const briefReview = await fetch(`/api/review/brief?id=${id}`).then(
-        (data) => data.json(),
-      );
-      setReview(briefReview);
+      try {
+        const res = await fetch(`/api/review/brief?id=${id}`);
+        const data = await res.json();
+
+        if (!res.ok) alert(data.error);
+        else setReview(data);
+      } catch (err) {
+        console.error(err);
+      }
     };
 
     fetchReview();
@@ -34,14 +39,16 @@ export default function BriefReview() {
     if (!flag) return;
 
     try {
-      await fetch("/api/review/brief", {
+      const res = await fetch("/api/review/brief", {
         method: "DELETE",
         body: JSON.stringify({ id: Number(id) }),
-      }).then((data) => {
-        if (data.status === 200) router.push("/home");
       });
+      const data = await res.json();
+
+      if (!res.ok) alert(data.error);
+      else router.push("/home");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

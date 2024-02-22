@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
 
   if (!keyword)
     return NextResponse.json(
-      { message: "Bad Request: Missing keyword parameter" },
+      { error: "Bad Request: Missing keyword parameter" },
       { status: 400 },
     );
 
@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
     const totalCount = findMovie.movieListResult.totCnt;
     if (totalCount === 0)
       return NextResponse.json(
-        { message: "No movies found for the specified keyword" },
+        { error: "No movies found for the specified keyword" },
         { status: 404 },
       );
 
@@ -80,7 +80,7 @@ export async function GET(req: NextRequest) {
   } catch (err) {
     console.error(err);
     return NextResponse.json(
-      { message: "Internal Server Error" },
+      { error: "Internal Server Error" },
       { status: 500 },
     );
   }

@@ -25,10 +25,18 @@ export default function Page() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { rating, pros, cons } = await fetch(
-        `/api/review/brief?id=${id}`,
-      ).then((res) => res.json());
-      setForm({ rating, pros, cons });
+      try {
+        const res = await fetch(`/api/review/brief?id=${id}`);
+        const data = await res.json();
+
+        if (!res.ok) alert(data.error);
+        else {
+          const { rating, pros, cons } = data;
+          setForm({ rating, pros, cons });
+        }
+      } catch (err) {
+        console.error(err);
+      }
     };
 
     fetchData();
@@ -52,12 +60,14 @@ export default function Page() {
     const { rating, pros, cons } = form;
 
     try {
-      await fetch("/api/review/brief", {
+      const res = await fetch("/api/review/brief", {
         method: "PUT",
         body: JSON.stringify({ id: Number(id), rating, pros, cons }),
-      }).then((data) => {
-        if (data.ok) router.push("/home");
       });
+      const data = await res.json();
+
+      if (!res.ok) alert(data.error);
+      else router.push("/home");
     } catch (err) {
       console.log(err);
     }

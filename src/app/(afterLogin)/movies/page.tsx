@@ -8,27 +8,34 @@ import MovieInfo from "./_component/MovieInfo";
 import BriefReviews from "./_component/BriefReviews";
 
 export default function Page() {
-	const [movie, setMovie] = useState<Movie>();
+  const [movie, setMovie] = useState<Movie>();
 
-	const searchParams = useSearchParams();
-	const id = searchParams.get("id");
+  const searchParams = useSearchParams();
+  const id = searchParams.get("id");
 
-	useEffect(() => {
-		const fetchMovie = async () => {
-			const movie = await fetch(`/api/movie?id=${id}`).then((data) => data.json());
-			setMovie(movie);
-		};
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const res = await fetch(`/api/movie?id=${id}`);
+        const data = await res.json();
 
-		fetchMovie();
-	}, [id]);
+        if (!res.ok) alert(data.error);
+        else setMovie(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-	if (!movie || !id) return null;
-	return (
-		<>
-			<BackButton />
-			<MovieInfo movie={movie} id={id}>
-				<BriefReviews briefReviews={movie.briefReviews} />
-			</MovieInfo>
-		</>
-	);
+    fetchMovie();
+  }, [id]);
+
+  if (!movie || !id) return null;
+  return (
+    <>
+      <BackButton />
+      <MovieInfo movie={movie} id={id}>
+        <BriefReviews briefReviews={movie.briefReviews} />
+      </MovieInfo>
+    </>
+  );
 }

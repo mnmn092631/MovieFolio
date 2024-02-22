@@ -49,7 +49,7 @@ export default function Page() {
       return;
 
     try {
-      await fetch("/api/review/detailed", {
+      const res = await fetch("/api/review/detailed", {
         method: "POST",
         body: JSON.stringify({
           title: form.title,
@@ -61,11 +61,13 @@ export default function Page() {
           review: form.review,
           movieId,
         }),
-      }).then((data) => {
-        if (data.ok) router.push("/home");
       });
+      const data = await res.json();
+
+      if (!res.ok) alert(data.error);
+      else router.push("/home");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

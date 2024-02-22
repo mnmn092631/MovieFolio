@@ -31,18 +31,24 @@ export default function Page() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetch(`/api/review/detailed?id=${id}`).then((res) =>
-        res.json(),
-      );
-      setForm({
-        title: data.title,
-        watchedAt: data.watchedAt.slice(0, 10),
-        place: data.place,
-        rating: data.rating,
-        storyline: data.storyline,
-        quotes: data.quotes,
-        review: data.review,
-      });
+      try {
+        const res = await fetch(`/api/review/detailed?id=${id}`);
+        const data = await res.json();
+
+        if (!res.ok) alert(data.error);
+        else
+          setForm({
+            title: data.title,
+            watchedAt: data.watchedAt.slice(0, 10),
+            place: data.place,
+            rating: data.rating,
+            storyline: data.storyline,
+            quotes: data.quotes,
+            review: data.review,
+          });
+      } catch (err) {
+        console.error(err);
+      }
     };
 
     fetchData();
@@ -73,7 +79,7 @@ export default function Page() {
       return;
 
     try {
-      await fetch("/api/review/detailed", {
+      const res = await fetch("/api/review/detailed", {
         method: "PUT",
         body: JSON.stringify({
           id: Number(id),
@@ -85,9 +91,11 @@ export default function Page() {
           quotes: form.quotes,
           review: form.review,
         }),
-      }).then((data) => {
-        if (data.ok) router.push("/home");
       });
+      const data = await res.json();
+
+      if (!res.ok) alert(data.error);
+      else router.push("/home");
     } catch (err) {
       console.log(err);
     }

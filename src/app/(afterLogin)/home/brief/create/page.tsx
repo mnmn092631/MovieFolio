@@ -34,14 +34,16 @@ export default function Page() {
     const { rating, pros, cons } = form;
 
     try {
-      await fetch("/api/review/brief", {
+      const res = await fetch("/api/review/brief", {
         method: "POST",
         body: JSON.stringify({ rating, pros, cons, movieId }),
-      }).then((data) => {
-        if (data.ok) router.push("/home");
       });
+      const data = await res.json();
+
+      if (!res.ok) alert(data.error);
+      else router.push("/home");
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 

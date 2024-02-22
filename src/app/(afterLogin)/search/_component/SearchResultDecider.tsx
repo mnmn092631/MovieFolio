@@ -12,7 +12,6 @@ export default function SearchResultDecider() {
   const [page, setPage] = useState<number>(1);
   const [isEnd, setIsEnd] = useState<boolean>(false);
 
-  const [status, setStatus] = useState<number>();
   const [movies, setMovies] = useState<
     Omit<Movie, "detailedReviews" | "briefReviews">[]
   >([]);
@@ -42,9 +41,10 @@ export default function SearchResultDecider() {
     setLoading(true);
     try {
       const res = await fetch(`/api/search?keyword=${keyword}&pageNo=${page}`);
-      setStatus(res.status);
-      if (res.status === 200) {
-        const data = await res.json();
+      const data = await res.json();
+
+      if (!res.ok) alert(data.error);
+      else {
         if (data.isEnd) setIsEnd(true);
         setMovies((prev) => prev.concat(data.list));
       }
@@ -70,8 +70,6 @@ export default function SearchResultDecider() {
   }, [keyword]);
 
   if (!keyword) return <BoxOffice />;
-  if (status === 404)
-    return <p className={styles.container}>No search results found.</p>;
   return (
     <div className={styles.container}>
       {movies.map((movie) => (
