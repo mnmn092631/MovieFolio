@@ -7,14 +7,9 @@
 <img src="https://img.shields.io/badge/prisma-2D3748?style=flat-square&logo=prisma&logoColor=white"/>
 </div>
 
-개발 기간: 2024.02. 05. ~ 진행 중
+개발 기간: 2024.02. 05. ~ 2024. 02. 23.
 
 > 영화 감상 기록, 영화 검색 기능을 제공하는 웹 서비스
-
-## 목차
-
-[실행 방법](#실행-방법)<br/>
-[기능 예시](#기능-예시)<br/>
 
 ## 실행 방법
 
@@ -38,5 +33,3 @@ MOVIE_BOX_OFFICE=일별 박스오피스&targetDt=
 ```sh
 npm start
 ```
-
-## 기능 예시
